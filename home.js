@@ -13,8 +13,23 @@ function getCookie(cookieName) {
 	return null;
 }
 
-const retrievedUsername = getCookie('username')
-const retrievedType = getCookie('type')
-const retrievedData = getCookie('data')
+const username = getCookie('username')
+const type = getCookie('type')
+const data = getCookie('data')
 
-console.log(retrievedData)
+displayDashboard()
+
+function displayDashboard(username, type) {
+	document.getElementbyId("header").innerHTML = `<h1>Welcome, ${type} ${username}!</h1>`
+
+	switch(type): {
+		case 'Teacher': {
+			//teacher.displayClasses();
+		}
+		break;
+		case 'Student': {
+			//student.displayClasses();
+		}
+		break;
+	}
+}
