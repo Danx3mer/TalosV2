@@ -1,5 +1,3 @@
-import 
-
 function getCookie(cookieName) {
 	let cookies = document.cookie.split(";");
 
@@ -19,3 +17,4 @@ const retrievedUsername = getCookie('username')
 const retrievedType = getCookie('type')
 const retrievedData = getCookie('data')
 
+console.log(retrievedData)

@@ -29,14 +29,17 @@ def main():
     
     u,p = getData()
 
-    
-    
     if db.login(u, p): 
+        #Read User Data
+        userDict = db.getUserDictionary(u)
+        userType = userDict["Type"]
+        userData = userDict["TypeSpecific"]
+
         #Create cookie
         print(f"Set-Cookie: username={u}; Path=/; Max-Age=86400")
-        print(f"Set-Cookie: type={p}; Path=/; Max-Age=86400")
-        print(f"Set-Cookie: data={db.getUserDictionary(u)}; Path=/; Max-Age=86400")
-
+        print(f"Set-Cookie: type={userType}; Path=/; Max-Age=86400")
+        print(f"Set-Cookie: data={userData}; Path=/; Max-Age=86400")
+        
         #Redirect to home page
         redirct_url += f"home.html"
     else: 
