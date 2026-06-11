@@ -11,26 +11,16 @@
 		</div>
 		<main>
 			<form method="POST" action="login.py">
-			<h1>Talos V2</h1>
+				<h1>Talos V2</h1>
 				Username:&nbsp;<input type='text' name='username' placeholder='Enter Username Here'><br><br>
 				Password:&nbsp;&nbsp;<input type='text' name='password' placeholder='Enter Password'><br><br>
-				
+
 				<input class='btn' type='submit' action='submit.py' name='submit' value='Login'>
-			<h6>&copy; 2026 Daniel Manita</h6>
+				<h6>&copy; 2026 Daniel Manita</h6>
 			</form>
 		</main>
 
 		<!-- Failure script -->
-		<script>
-			const queryString = window.location.search;
-			
-			const urlParams = new URLSearchParams(queryString);
-			
-			const user = urlParams.get('login');
-
-			if(user!=null) {
-				document.getElementById("successIndicator").hidden=false;
-			}
-		</script>
+		<script src="login.js"></script>
 	</body>
 </html>
