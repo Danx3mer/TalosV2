@@ -12,6 +12,10 @@ def readFromFile(fname):
 def login(username, password):
     return username in USER_DATA and password == USER_DATA[username][UDB_COL_PASSWORD]
 
+# Returns the user data as a dictionary
+def getUserDictionary(username):
+    return USER_DATA[username]
+
 def writeToFile(fname, dataframe):
     dataframe.to_csv(fname, index=False)
 

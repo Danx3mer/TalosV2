@@ -28,11 +28,14 @@ def main():
     redirct_url = "../talosv2/"
     
     u,p = getData()
+
+    
     
     if db.login(u, p): 
         #Create cookie
         print(f"Set-Cookie: username={u}; Path=/; Max-Age=86400")
-        print(f"Set-Cookie: password={p}; Path=/; Max-Age=86400")
+        print(f"Set-Cookie: type={p}; Path=/; Max-Age=86400")
+        print(f"Set-Cookie: data={db.getUserDictionary(u)}; Path=/; Max-Age=86400")
 
         #Redirect to home page
         redirct_url += f"home.html"

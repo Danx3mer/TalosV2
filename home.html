@@ -19,28 +19,7 @@
 			-->
 		</main>
 		</div>
-		<script>
-			function getCookie(cookieName) {
-				let cookies = document.cookie.split(";");
-
-				for(let i=0; i<cookies.length; i++) {
-					let pair = cookies[i].split('=');
-					let key = pair[0].trim();
-
-					if(key === cookieName) {
-						return pair[1].trim();
-					}
-				}
-
-				return null;
-			}
-
-			const retrievedUsername = getCookie('username')
-			const retrievedPassword = getCookie('password')
-			
-			console.log(retrievedUsername)
-			console.log(retrievedPassword)
-		</script>
+		<script src="home.js"></script>
 	</body>
 </html>
 

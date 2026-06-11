@@ -1,6 +1,7 @@
 {
 	"Admin": {
 		"Type": "Admin",
-		"Password": "Admin"
+		"Password": "Admin",
+		"TypeSpecific": {}
 	}
 }

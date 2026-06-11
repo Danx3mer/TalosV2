@@ -1,9 +1,21 @@
-const queryString = window.location.search;
+import 
 
-const urlParams = new URLSearchParams(queryString);
+function getCookie(cookieName) {
+	let cookies = document.cookie.split(";");
 
-const user = urlParams.get('login');
+	for(let i=0; i<cookies.length; i++) {
+		let pair = cookies[i].split('=');
+		let key = pair[0].trim();
 
-if(user!=null) {
-	document.getElementById("successIndicator").hidden=false;
+		if(key === cookieName) {
+			return pair[1].trim();
+		}
+	}
+
+	return null;
 }
+
+const retrievedUsername = getCookie('username')
+const retrievedType = getCookie('type')
+const retrievedData = getCookie('data')
+
