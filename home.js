@@ -15,14 +15,14 @@ function getCookie(cookieName) {
 
 const username = getCookie('username')
 const type = getCookie('type')
-const data = getCookie('data')
+const data = getCookie('data') 
 
-displayDashboard()
+displayDashboard(username, type)
 
-function displayDashboard(username, type) {
-	document.getElementbyId("header").innerHTML = `<h1>Welcome, ${type} ${username}!</h1>`
+function displayDashboard(uname, utype) {
+	document.getElementById("header").innerHTML = `<h1>Welcome, ${type} ${username}!</h1>`
 
-	switch(type): {
+	switch(utype) {
 		case 'Teacher': {
 			//teacher.displayClasses();
 		}
