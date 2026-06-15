@@ -3,5 +3,10 @@
 		"Type": "Admin",
 		"Password": "Admin",
 		"TypeSpecific": {}
+	},
+	"teach": {
+		"Type": "Teacher",
+		"Password": "wow",
+		"TypeSpecific": ["coolCourse","banana"]
 	}
 }

@@ -34,6 +34,16 @@ def main():
         userDict = db.getUserDictionary(u)
         userType = userDict["Type"]
         userData = userDict["TypeSpecific"]
+        
+        if userType == "Admin":
+            teachers = db.getUsersOfType("Teacher")
+            students = db.getUsersOfType("Student")
+            courses = 0 #courses.length()
+
+            userData = [teachers, students, courses]
+
+        if userType == "Student":
+            userData = [coolCourse] #courses.getByStudent(u)
 
         #Create cookie
         print(f"Set-Cookie: username={u}; Path=/; Max-Age=86400")

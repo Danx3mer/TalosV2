@@ -16,7 +16,10 @@ def login(username, password):
 def getUserDictionary(username):
     return USER_DATA[username]
 
-def writeToFile(fname, dataframe):
-    dataframe.to_csv(fname, index=False)
+def getUsersOfType(t):
+    val = 0
+    for user in USER_DATA:
+        if USER_DATA[user]['Type'] == t: val += 1
+    return val
 
 USER_DATA = readFromFile(PATH_TO_USER_DB)
