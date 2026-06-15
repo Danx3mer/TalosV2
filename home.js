@@ -34,9 +34,18 @@ function displayDashboard(uname, utype) {
 		case 'Admin': {
 			teachers = data[0]
 			students = data[1]
-			courses = data[2]
+			course = data[2]
 			dashboard.innerHTML = "<h3>Welcome to the admin dashboard! Use the navigation bar on your left to modify your school!</h3>\n"
-						+ `There are currently ${teachers} teachers, ${students} students, and ${courses} courses taught!`
+						+ `There are currently ${teachers} teachers, ${students} students, and ${course} courses taught!`
+			
+			navbar.innerHTML += `<h4>Course Management</h4>`
+			navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"courses.html?mode=add\">Add a course</a><br><br>`
+			navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"courses.html?mode=del\">Delete a course</a><br><br>`
+
+			navbar.innerHTML += `<h4>User Management</h4>`
+			navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"users.html?mode=add\">Add a user</a><br><br>`
+			navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"users.html?mode=del\">Delete a user</a><br><br>`
+			navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"users.html?mode=assign\">Assign a user to a course</a>`
 		}
 		break;
 		case 'Teacher': {
@@ -81,4 +90,6 @@ function displayDashboard(uname, utype) {
 		}
 		break;
 	}
+	
+	navbar.innerHTML += `<br><br><br><br><a class=\"NavbarBtn\" id=\"Logout\" href=\"logout.py\">Logout</a>`
 }
