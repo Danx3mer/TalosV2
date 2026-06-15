@@ -34,6 +34,7 @@ def main():
         userDict = db.getUserDictionary(u)
         userType = userDict["Type"]
         userData = userDict["TypeSpecific"]
+        courseData = db.getCourseCookie()
         
         if userType == "Admin":
             teachers = db.getUsersOfType("Teacher")
@@ -49,6 +50,7 @@ def main():
         print(f"Set-Cookie: username={u}; Path=/; Max-Age=86400")
         print(f"Set-Cookie: type={userType}; Path=/; Max-Age=86400")
         print(f"Set-Cookie: data={userData}; Path=/; Max-Age=86400")
+        print(f"Set-Cookie: courseData={courseData}; Path=/; Max-Age=86400")
 
         #Redirect to home page
         redirct_url += f"home.html"

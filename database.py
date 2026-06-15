@@ -45,6 +45,10 @@ def getCoursesOf(name, t):
 def getCourseData(course):
     return COURSE_DATA[course]
 
+# Returns all course data to be used as a cookie
+def getCourseCookie():
+    return COURSE_DATA
+
 # Returns the amount of courses stored in the json file
 def courseAmount():
     return len(COURSE_DATA)

@@ -1,0 +1,9 @@
+{
+	"coolCourse": {
+		"Name": "really cool course",
+		"Teacher": "teach",
+		"Student": {
+			"bobby": 90
+		}
+	}
+}
