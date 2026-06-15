@@ -2,7 +2,7 @@
 	"coolCourse": {
 		"Name": "really cool course",
 		"Teacher": "teach",
-		"Student": {
+		"Student":{ 
 			"bobby": 90
 		}
 	}

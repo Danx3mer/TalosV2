@@ -30,7 +30,6 @@ function displayDashboard(uname, utype) {
 	navbar = document.getElementById("Navbar");	
 	dashboard = document.getElementById("dashboard");
 	
-
 	switch(utype) {
 		case 'Admin': {
 			teachers = data[0]
@@ -51,8 +50,8 @@ function displayDashboard(uname, utype) {
 
 			for(var i=0; i<data.length; i++) {
 				var courseID = data[i];
-				var courseName = `course${i}` //courses[courseID][];
-				var courseStudents = i; //courses[courseID]["students"];
+				var courseName = courses[courseID]["Name"];
+				var courseStudents = Object.keys(courses[courseID]["Student"]).length;
 				
 				dashboard.innerHTML += `<br><tr><td>${courseID}</td><td>${courseName}</td><td>${courseStudents}</td></tr>`
 				navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"course.html?course=${courseID}\">${courseName}</a>`	
