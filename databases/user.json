@@ -8,5 +8,10 @@
 		"Type": "Teacher",
 		"Password": "wow",
 		"TypeSpecific": ["coolCourse","banana"]
+	},
+	"bobby": {
+		"Type": "Student",
+		"Password": "yipee",
+		"TypeSpecific": {}
 	}
 }

@@ -38,12 +38,12 @@ def main():
         if userType == "Admin":
             teachers = db.getUsersOfType("Teacher")
             students = db.getUsersOfType("Student")
-            courses = 0 #courses.length()
+            courses = db.courseAmount()
 
             userData = [teachers, students, courses]
 
         if userType == "Student":
-            userData = [coolCourse] #courses.getByStudent(u)
+            userData = db.getCoursesOf(u, userType)
 
         #Create cookie
         print(f"Set-Cookie: username={u}; Path=/; Max-Age=86400")
