@@ -1,0 +1,73 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	width: 100%;
+	height: 100vh;
+	margin: 0;
+	font-family: "helvetica";
+}
+
+.Container {
+	display: flex;
+	width: 100%;
+	height: 100%
+	margin: 0px 0px 0px 0px;	
+	z-index: 0;
+
+	transition: backdrop-filter 0.5s ease-in-out;
+}
+
+#Navbar {
+	padding: 5px;
+	background-color: white;
+	text-align: center;
+	border-radius: 0px 10px 10px 20px;
+	box-shadow: 3px 3px 5px #000000;
+	
+	width: 10%;
+	height: 80vh;
+	z-index: 1;
+
+	transition: height 0.5s ease-out, width 0.5s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+#Navbar:hover {
+	box-shadow: 	0px 15px 20px rgba(154, 160, 185, .5),
+			0px 5px 5px rgba(166,173,201,.3); 
+	width: 25%;
+	height: 100%;
+}
+
+body:has(#Navbar:hover) .Container {
+	backdrop-filter: brightness(50%); /* Blurs and darkens */
+}
+
+body:has(#Navbar:hover) main {
+	filter: blur(8px) brightness(50%);
+}
+
+main {
+	position: absolute;
+	margin-left: 15%;
+	width: 85%;
+	height: 100%;
+	transition: filter 0.5s ease-in-out;
+}
+
+h1 {
+	display: grid;
+	place-items: center;
+	padding: 10%;
+	margin-top: -10px;
+}
+
+h6 {
+	display: grid;
+	place-items: center;
+	padding: 5%;
+	margin-top: 25px;
+	margin-bottom: -25px;
+}

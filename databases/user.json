@@ -1,17 +1,41 @@
 {
-	"Admin": {
-		"Type": "Admin",
-		"Password": "Admin",
-		"TypeSpecific": {}
-	},
-	"teach": {
-		"Type": "Teacher",
-		"Password": "wow",
-		"TypeSpecific": ["coolCourse","banana"]
-	},
-	"bobby": {
-		"Type": "Student",
-		"Password": "yipee",
-		"TypeSpecific": {}
-	}
+    "Admin": {
+        "Type": "Admin",
+        "Password": "Admin",
+        "TypeSpecific": {}
+    },
+    "bobby": {
+        "Type": "Student",
+        "Password": "yipee",
+        "TypeSpecific": {}
+    },
+    "funnyguy": {
+        "Password": "password",
+        "Type": "Student",
+        "TypeSpecific": []
+    },
+    "dunnyguy": {
+        "Password": "password",
+        "Type": "student",
+        "TypeSpecific": []
+    },
+    "danielm1023": {
+        "Password": "95",
+        "Type": "fr",
+        "TypeSpecific": []
+    },
+    "teach2": {
+        "Password": "iloveteaching",
+        "Type": "Teacher",
+        "TypeSpecific": [
+            "cooler"
+        ]
+    },
+    "Dinosaur": {
+        "Password": "funny",
+        "Type": "Teacher",
+        "TypeSpecific": [
+            "cooler"
+        ]
+    }
 }

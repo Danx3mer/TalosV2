@@ -1,9 +1,14 @@
 {
-	"coolCourse": {
-		"Name": "really cool course",
-		"Teacher": "teach",
-		"Student":{ 
-			"bobby": 90
-		}
-	}
+    "cooler": {
+        "Name": "cooler course",
+        "Teacher": [
+            "teach",
+            "teach2",
+            "Dinosaur"
+        ],
+        "Student": {
+            "funnyguy": "100",
+            "funny": "1009"
+        }
+    }
 }

@@ -38,23 +38,24 @@ function displayDashboard(uname, utype) {
 			dashboard.innerHTML = "<h3>Welcome to the admin dashboard! Use the navigation bar on your left to modify your school!</h3>\n"
 						+ `There are currently ${teachers} teachers, ${students} students, and ${course} courses taught!`
 			
-			navbar.innerHTML += `<h4>Course Management</h4>`
-			navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"courses.html?mode=add\">Add a course</a><br><br>`
-			navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"courses.html?mode=del\">Delete a course</a><br><br>`
+			navbar.innerHTML += `<h4>Course</h4>`
+			navbar.innerHTML += `<a class="NavbarBtn positiveBtn" href=\"courses.html?mode=add\">Add a course</a>`
+			navbar.innerHTML += `<a class="NavbarBtn negativeBtn" href=\"courses.html?mode=del\">Delete a course</a>`
 
-			navbar.innerHTML += `<h4>User Management</h4>`
-			navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"users.html?mode=add\">Add a user</a><br><br>`
-			navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"users.html?mode=del\">Delete a user</a><br><br>`
-			navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"users.html?mode=assign\">Assign a user to a course</a>`
+			navbar.innerHTML += `<h4>User</h4>`
+			navbar.innerHTML += `<a class="NavbarBtn positiveBtn" href=\"users.html?mode=add\">Add user</a>`
+			navbar.innerHTML += `<a class="NavbarBtn negativeBtn" href=\"users.html?mode=del\">Delete user</a>`
+			navbar.innerHTML += `<a class="NavbarBtn neutralBtn" href=\"users.html?mode=assign\">Modify user</a>`
 		}
 		break;
 		case 'Teacher': {
-			//Fill up the navbar with all classes
+			dashboardInnerHtml = ""
 			if(data.length==0) {
 				dashboard.innerHTML = "<h3>You are currently not teaching any classes! Contact the Admin</h3>"
 				break;
 			} else {
-				dashboard.innerHTML = "<table><tr><th>Course ID</th><th>Course Name</th><th>Students</th></tr>";
+				navbar.innerHTML += "<h4>Courses</h4>"
+				dashboardInnerHtml = "<table><thead><tr><th>Course ID</th><th>Course Name</th><th>Students</th></tr></thead><tbody>";
 			}
 
 			for(var i=0; i<data.length; i++) {
@@ -62,34 +63,35 @@ function displayDashboard(uname, utype) {
 				var courseName = courses[courseID]["Name"];
 				var courseStudents = Object.keys(courses[courseID]["Student"]).length;
 				
-				dashboard.innerHTML += `<br><tr><td>${courseID}</td><td>${courseName}</td><td>${courseStudents}</td></tr>`
-				navbar.innerHTML += `<a class=\"NavbarBtn\" href=\"course.html?course=${courseID}\">${courseName}</a>`	
+				dashboardInnerHtml += `<tr><td>${courseID}</td><td>${courseName}</td><td>${courseStudents}</td></tr>`
+				navbar.innerHTML += `<a class="NavbarBtn neutralBtn" href="course.html?course=${courseID}">${courseName}</a>`	
 			}
 			
-			dashboard.innerHTML += "</table>"
+			dashboard.innerHTML = dashboardInnerHtml + "</tbody></table>"
 		}
 		break;
 		case 'Student': {
+			dashboardInnerHtml = ""
 			if(data.length==0) {
-				dashboard.innerHTML = "<h3>You are currently not teaching any classes! Contact the Admin</h3>"
+				dashboard.innerHTML = "<h3>You are currently not in any classes!</h3>"
 				break;
 			} else {
-				dashboard.innerHTML = "<table><tr><th>Course Name</th><th>Teacher Name</th><th>Grade</th></tr>";
+				dashboardInnerHtml = "<table><tr><th>Course Name</th><th>Teacher Name(s)</th><th>Grade</th></tr>";
 			}
 
 			for(var i=0; i<data.length; i++) {
 				var courseID = data[i];
 				var courseName = courses[courseID]["Name"]
-				var courseTeacher = courses[courseID]["Teacher"]
+				var courseTeacher = courses[courseID]["Teacher"].join(', ')
 				var courseGrade = courses[courseID]["Student"][username]
-
-				dashboard.innerHTML += `<br><tr><td>${courseName}</td><td>${courseTeacher}</td><td>${courseGrade}</td></tr>`
+				
+				dashboardInnerHtml += `<tr><td>${courseName}</td><td>${courseTeacher}</td><td>${courseGrade}</td></tr>`
 			}
 
-			dashboard.innerHTML += "</table>"
+			dashboard.innerHTML = dashboardInnerHtml + "</table>"
 		}
 		break;
 	}
 	
-	navbar.innerHTML += `<br><br><br><br><a class=\"NavbarBtn\" id=\"Logout\" href=\"logout.py\">Logout</a>`
+	navbar.innerHTML += `<hr><hr><br><a class="NavbarBtn negativeBtn" id=\"Logout\" href="logout.py">Logout</a>`
 }

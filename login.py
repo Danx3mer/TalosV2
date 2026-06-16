@@ -2,7 +2,6 @@
 
 import cgi
 import cgitb
-import random
 import database as db
 
 cgitb.enable()
