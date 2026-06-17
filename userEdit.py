@@ -20,16 +20,14 @@ def getData():
     
     params = []
 
-    if "uType" in formData.keys(): 
-        params.append("add")
+    params.append(formData.getvalue("type"))    
+    
+    if params[0] == "add":
         params.append(formData.getvalue("uType"))
         params.append(formData.getvalue("password"))
-    elif "course" in formData.keys(): 
-        params.append("assign")
+    elif params[0] == "assign":
         params.append(formData.getvalue("course"))
-    else:
-        params.append("del")
-
+    
     params.append(formData.getvalue("username"))
 
     return params
@@ -39,12 +37,14 @@ def main():
 
     success = False
 
-    if params[0] == "add":
-        success = db.userAdd(params[3], params[2], params[1])
-    elif params[0] == "assign":
-        success = db.userAssign(params[2], params[1])
+    if None in params: success = False
     else:
-        success = db.userDel(params[1])
+        if params[0] == "add":
+            success = db.userAdd(params[3], params[2], params[1])
+        elif params[0] == "assign":
+            success = db.userAssign(params[2], params[1])
+        else:
+            success = db.userDel(params[1])
 
     htmlRedirect(f"users.html?mode={params[0]}&success={success}")
 

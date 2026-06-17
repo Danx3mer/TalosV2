@@ -2,7 +2,12 @@
 	box-sizing: border-box;
 }
 
+[hidden] {
+	display: none !important;
+}
+
 table {
+	flex-direction: column;
 	border-collapse: separate;
 	border-spacing: 3px;
 	border: 1px solid;
@@ -21,6 +26,24 @@ body {
 	font-family: "helvetica";
 }
 
+#successIndicator {
+	display: block;
+	margin-left: 37.5%;
+	margin-top: 10%;
+	text-align: center;
+	padding: 10px;
+	width: 25%;
+	border-radius: 25px;
+	box-shadow: 1px 1px 3px #000000;
+}
+
+.successful {
+	background-color: green;
+}
+
+.unsuccessful {
+	background-color: pink;
+}
 
 #form {
 	display: block;
@@ -114,6 +137,18 @@ body:has(#Navbar:hover) main {
 	filter: blur(8px) brightness(50%);
 }
 
+#dashboard {
+	display: flex;
+	justify-content: flex-start;
+	align-content: flex-start;
+}
+
+#adminDashboard {
+	margin-left: 15%;
+	display: inline-block;
+	align-items: left;
+}
+
 main {
 	position: absolute;
 	margin-left: 15%;
@@ -142,4 +177,17 @@ h6 {
 	padding: 5%;
 	margin-top: 25px;
 	margin-bottom: -25px;
+}
+
+input {
+	padding: 10px;
+}
+
+select {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+option {
+	padding: 10px;
 }

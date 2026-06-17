@@ -20,11 +20,10 @@ def getData():
     
     params = []
 
-    if "cName" in formData.keys(): 
-        params.append("add")
-        params.append(formData.getvalue("cName"))    
-    else: 
-        params.append("del")
+    params.append(formData.getvalue("type"))    
+
+    if params[0] == "add": 
+        params.append(formData.getvalue("cName"))
 
     params.append(formData.getvalue("cID"))
 
@@ -35,16 +34,20 @@ def main():
 
     success = False
 
-    if params[0] == "add":
-        success = db.addCourse(params[2], params[1])
+    mode = params[0]
+
+    if None in params: success = False
     else:
-        success = db.delCourse(params[1])
+        if mode == "add":
+            success = db.addCourse(params[2], params[1])
+        else:
+            success = db.delCourse(params[1])
 
     courseData = db.getCourseCookie()
     
     print(f"Set-Cookie: courseData={courseData}; Path=/; Max-Age=86400")
 
-    htmlRedirect(f"courses.html?mode={params[0]}&success={success}")
+    htmlRedirect(f"courses.html?mode={mode}&success={success}")
 
 if __name__ == '__main__':
     main()

@@ -67,3 +67,7 @@ h6 {
 			0px 5px 5px rgba(166,173,201,.3); 
 	background-color: lightgreen;
 }
+
+input {
+	padding: 10px;
+}

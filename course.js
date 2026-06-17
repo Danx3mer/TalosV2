@@ -30,9 +30,9 @@ const courses = parseCookieArray(getCookie('courseData'))
 
 var innerHTML = ""
 
-displayDashboard(username, type)
+displayContent(username, type)
 
-function displayDashboard(uname, utype) {
+function displayContent(uname, utype) {
 	document.getElementById("header").innerHTML = `<h1>Welcome, ${type} ${username}!</h1><br><h2>Editing course ${course}</h2>`
 
 	navbar = document.getElementById("Navbar");	
@@ -44,6 +44,7 @@ function displayDashboard(uname, utype) {
 	var courseStudents = courses[course]["Student"];
 
 	innerHTML += `<input type="hidden" name="course" value="${course}">`;
+	innerHTML = "<table><tr><th>Student</th><th>Grade</th></tr>"
 
 	for(const [student, grade] of Object.entries(courseStudents)) {
 		innerHTML += `<br><tr><td>${student}</td><td><input type='text' name='student-${student}' value='${grade}'></td></tr>`
@@ -52,6 +53,18 @@ function displayDashboard(uname, utype) {
 	innerHTML += "</table>"
 
 	dashboard.innerHTML = innerHTML + dashboard.innerHTML
+
+	navbar.innerHTML += `<h4>Back Home</h4>`
+	navbar.innerHTML += `<a class="NavbarBtn neutralBtn" href=\"home.html\">Home</a>`
+	navbar.innerHTML += `<br><h4>Courses</h4>`
+	
+	for(var i=0; i<data.length; i++) {
+		var courseID = data[i];
+		var courseName = courses[courseID]["Name"];
+		var courseStudents = Object.keys(courses[courseID]["Student"]).length;
+
+		navbar.innerHTML += `<a class="NavbarBtn neutralBtn" href="course.html?course=${courseID}">${courseName}</a>`
+	}
 
 	navbar.innerHTML += `<hr><hr><br><a class="NavbarBtn negativeBtn" id=\"Logout\" href="logout.py">Logout</a>`
 }

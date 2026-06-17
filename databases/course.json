@@ -4,11 +4,37 @@
         "Teacher": [
             "teach",
             "teach2",
-            "Dinosaur"
+            "Dinosaur",
+            "Ms. Mouzakitis"
         ],
         "Student": {
-            "funnyguy": "100",
-            "funny": "1009"
+            "funnyguy": "0",
+            "funny": "50"
         }
+    },
+    "algebra": {
+        "Name": "algebra",
+        "Teacher": [],
+        "Student": []
+    },
+    "alg": {
+        "Name": "algebra",
+        "Teacher": [],
+        "Student": []
+    },
+    "alg2": {
+        "Name": "algebra 2",
+        "Teacher": [],
+        "Student": []
+    },
+    "Funny": {
+        "Name": "Funnier",
+        "Teacher": [],
+        "Student": []
+    },
+    "comedy": {
+        "Name": "comedy 101",
+        "Teacher": [],
+        "Student": []
     }
 }

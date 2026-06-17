@@ -35,8 +35,8 @@ function displayDashboard(uname, utype) {
 			teachers = data[0]
 			students = data[1]
 			course = data[2]
-			dashboard.innerHTML = "<h3>Welcome to the admin dashboard! Use the navigation bar on your left to modify your school!</h3>\n"
-						+ `There are currently ${teachers} teachers, ${students} students, and ${course} courses taught!`
+			dashboard.innerHTML = "<div id='adminDashboard'><h3>Welcome to the admin dashboard! Use the navigation bar on your left to modify your school!</h3>\n"
+						+ `<h4>There are currently ${teachers} teachers, ${students} students, and ${course} courses taught!</h4></div>`
 			
 			navbar.innerHTML += `<h4>Course</h4>`
 			navbar.innerHTML += `<a class="NavbarBtn positiveBtn" href=\"courses.html?mode=add\">Add a course</a>`
