@@ -137,6 +137,16 @@ body:has(#Navbar:hover) main {
 	filter: blur(8px) brightness(50%);
 }
 
+#header {
+	display: flex;
+	align-content: center;
+	gap: 10%;
+}
+
+img {
+	margin-top: 3%;
+}
+
 #dashboard {
 	display: flex;
 	justify-content: flex-start;
@@ -153,8 +163,17 @@ main {
 	position: absolute;
 	margin-left: 15%;
 	width: 85%;
-	height: 100%;
+	height: 85%;
 	transition: filter 0.5s ease-in-out;
+}
+
+footer {
+	position: fixed;
+	padding: 1rem;
+	bottom: 0;
+	text-align: center;
+	margin-left: 10%;
+	width: 100%;
 }
 
 h1 {
@@ -169,6 +188,12 @@ h4 {
 	place-items: center;
 	padding: 5%;
 	margin-bottom: 10px;
+}
+
+h5 {
+	display: flex;
+	padding: 2px;
+	margin-bottom: -10px;
 }
 
 h6 {

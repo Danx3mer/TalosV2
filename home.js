@@ -25,7 +25,7 @@ const courses = parseCookieArray(getCookie('courseData'))
 displayDashboard(username, type)
 
 function displayDashboard(uname, utype) {
-	document.getElementById("header").innerHTML = `<h1>Welcome, ${type} ${username}!</h1>`
+	document.getElementById("header").innerHTML += `<h1>Welcome, ${type} ${username}!</h1>`
 
 	navbar = document.getElementById("Navbar");	
 	dashboard = document.getElementById("dashboard");

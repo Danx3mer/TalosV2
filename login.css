@@ -28,11 +28,33 @@ main {
 	box-shadow: 3px 3px 5px #000000;
 }
 
+footer {
+	position: fixed;
+	padding: 1rem;
+	bottom: 0;
+	text-align: center;
+	margin-left: 1%;
+	width: 100%;
+}
+
 h1 {
 	display: grid;
 	place-items: center;
-	padding: 5%;
+	padding: 10%;
 	margin-top: -10px;
+}
+
+h4 {
+	display: grid;
+	place-items: center;
+	padding: 5%;
+	margin-bottom: 10px;
+}
+
+h5 {
+	display: flex;
+	padding: 2px;
+	margin-bottom: -10px;
 }
 
 h6 {
