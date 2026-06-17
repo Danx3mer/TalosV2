@@ -46,6 +46,10 @@ def main():
         else:
             success = db.userDel(params[1])
 
+    courseData = db.getCourseCookie()
+    
+    print(f"Set-Cookie: courseData={courseData}; Path=/; Max-Age=86400")
+
     htmlRedirect(f"users.html?mode={params[0]}&success={success}")
 
 if __name__ == '__main__':

@@ -33,7 +33,7 @@ var innerHTML = ""
 displayContent(username, type)
 
 function displayContent(uname, utype) {
-	document.getElementById("header").innerHTML = `<h1>Welcome, ${type} ${username}!</h1><br><h2>Editing course ${course}</h2>`
+	document.getElementById("header").innerHTML += `<h1>Welcome, ${type} ${username}!</h1>i`
 
 	navbar = document.getElementById("Navbar");	
 	dashboard = document.getElementById("dashboard");
@@ -44,7 +44,7 @@ function displayContent(uname, utype) {
 	var courseStudents = courses[course]["Student"];
 
 	innerHTML += `<input type="hidden" name="course" value="${course}">`;
-	innerHTML = "<table><tr><th>Student</th><th>Grade</th></tr>"
+	innerHTML += "<table><tr><th>Student</th><th>Grade</th></tr>"
 
 	for(const [student, grade] of Object.entries(courseStudents)) {
 		innerHTML += `<br><tr><td>${student}</td><td><input type='text' name='student-${student}' value='${grade}'></td></tr>`

@@ -36,5 +36,45 @@
         "Name": "comedy 101",
         "Teacher": [],
         "Student": []
+    },
+    "precalc": {
+        "Name": "Precalculus",
+        "Teacher": [
+            "Mr. Manita"
+        ],
+        "Student": []
+    },
+    "precalc2": {
+        "Name": "Precalculus",
+        "Teacher": [],
+        "Student": []
+    },
+    "calc": {
+        "Name": "calculus",
+        "Teacher": [
+            "Manita"
+        ],
+        "Student": {}
+    },
+    "english": {
+        "Name": "Foundations of literature",
+        "Teacher": [],
+        "Student": {}
+    },
+    "CS": {
+        "Name": "Computer Science",
+        "Teacher": [
+            "Mr. Teacher"
+        ],
+        "Student": {
+            "Mr. Student": 95
+        }
+    },
+    "CS2": {
+        "Name": "Computer Science 2",
+        "Teacher": [
+            "daniel zou"
+        ],
+        "Student": {}
     }
 }

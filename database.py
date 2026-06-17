@@ -104,7 +104,7 @@ def getCourseCookie():
 def addCourse(cID, cName):
     COURSE_DATA = readFromFile(PATH_TO_COURSE_DB)
     if cID in COURSE_DATA: return False
-    COURSE_DATA[cID] = {"Name": cName, "Teacher": [], "Student": []}
+    COURSE_DATA[cID] = {"Name": cName, "Teacher": [], "Student": {}}
     return writeFile(PATH_TO_COURSE_DB, COURSE_DATA)
 
 # Removes a course

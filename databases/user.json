@@ -44,5 +44,53 @@
         "TypeSpecific": [
             "cooler"
         ]
+    },
+    "Mr. Manita": {
+        "Password": "computer",
+        "Type": "Teacher",
+        "TypeSpecific": [
+            "precalc"
+        ]
+    },
+    "Manita": {
+        "Password": "computer",
+        "Type": "Teacher",
+        "TypeSpecific": [
+            "calc"
+        ]
+    },
+    "person": {
+        "Password": "password",
+        "Type": "Student",
+        "TypeSpecific": []
+    },
+    "Mr. Teacher": {
+        "Password": "teaching",
+        "Type": "Teacher",
+        "TypeSpecific": [
+            "CS"
+        ]
+    },
+    "Mr. Student": {
+        "Password": "learning",
+        "Type": "Student",
+        "TypeSpecific": []
+    },
+    "Ms. Teacher": {
+        "Password": "teaching",
+        "Type": "Teacher",
+        "TypeSpecific": [
+            "CS1"
+        ]
+    },
+    "Ms. Student": {
+        "Password": "learning",
+        "Type": "Student",
+        "TypeSpecific": []
+    },
+    "daniel manita": {
+        "Password": "daniel",
+        "Type": "Student",
+        "TypeSpecific": []
     }
 }

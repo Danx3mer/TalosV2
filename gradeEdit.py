@@ -15,16 +15,6 @@ def htmlRedirect(url):
         </head>
     </html>''')
 
-
-def htmlPrint(prin):
-    print(f'''Content-type:text/html\r\n\r\n
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <p>{prin}</p>
-        </head>
-    </html>''')
-
 def getData():       
     formData = cgi.FieldStorage()
     
@@ -41,13 +31,15 @@ def getData():
 def main():
     grade = getData() 
 
+    cName = next(iter(grade))
+
     success = db.writeGrades(grade)
 
     courseData = db.getCourseCookie()
     
     print(f"Set-Cookie: courseData={courseData}; Path=/; Max-Age=86400")
     
-    htmlRedirect(f"course.html?course={next(iter(grade))}&success={success}")
+    htmlRedirect(f"course.html?course={cName}&success={success}")
 
 if __name__ == '__main__':
     main()
