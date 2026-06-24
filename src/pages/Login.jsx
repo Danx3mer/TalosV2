@@ -3,7 +3,7 @@ import '../css/login.css'
 
 function Login() {
 	return (
-		<FormStyled title='Login' inputs={['Banana', 'Apple']} submitButtonValue='lets a go' onCLick='submit' />
+		<FormStyled title='Login' inputs={['Username', 'Password']} submitButtonValue='lets a go' onCLick='submit' />
 	);
 }
 

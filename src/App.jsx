@@ -1,7 +1,10 @@
 import Login from './pages/Login.jsx'
+import { Routes, Route } from 'react-router'
 
 export default function App() {
 	return (
-		<App/>
+		<Routes>
+			<Route path="/login.html" element=<Login/>/>
+		</Routes>
 	);
 }
