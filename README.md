@@ -1,5 +1,6 @@
 # TalosV2
 <hr>
+
 ## What is Talos V2?
 This was originally my school's final project aimed at testing one's web development skills. For this project the only requirements were that we were to use python's cgi (common gateway interface) tools in order to retrieve data found in a form that a user would fill out.
 I decided to create a scaled down version of my school's directory management system, called Talos (hence the name, Talos V2).
