@@ -1,6 +1,19 @@
-.btn {
-	position: relative;
+.formTitle {
+	display: grid;
+	place-items: center;
+	padding: 10%;
+	margin-top: -10px;
+}
+
+.form {
 	width: 33%;
+	padding: 50px;
+	border-radius: 20px;
+	box-shadow: 3px 3px 5px #000000;
+}
+
+.formBtn {
+	position: relative;
 	padding: 5% 5%;
 	background-color: skyblue;
 	border: dashed black;
@@ -16,13 +29,13 @@
 	transition: transform 0.2s ease-out, box-shadow 0.2s ease-in-out;
 }
 
-.btn:hover {
+.formBtn:hover {
 	transform: translateY(-5px);
 	box-shadow: 	0px 15px 20px rgba(154, 160, 185, .5),
 			0px 5px 5px rgba(166,173,201,.3); 
 	background-color: lightgreen;
 }
 
-input {
+.formInput {
 	padding: 10px;
 }

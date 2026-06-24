@@ -1,13 +1,7 @@
-import './css/App.css'
-import FormStyled from './components/form.jsx'
-import TestElement from './components/Test.jsx'
+import Login from './pages/Login.jsx'
 
-function App() {
+export default function App() {
 	return (
-		<>
-		<FormStyled title='this is a really cool title' inputs={['Banana', 'Apple']} submitButtonValue='lets a go' onCLick='submit' />
-		</>
+		<App/>
 	);
 }
-
-export default App

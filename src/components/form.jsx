@@ -3,12 +3,20 @@ import '.././css/form.css'
 function FormStyled({title, inputs, submitButtonValue, onClick}) {
 	return (
 		<div className="form">
-		<h1>{title}</h1>
-		<p>{inputs}</p>
+		<h1 id={`form-${title}-title`} className='formTitle'>{title}</h1>
+
+		<hr/><br/>
+
 		{ inputs.map((inputName, index) => {
-			return <InputLine key={index} valueName={inputName} />
+			return <>
+				<InputLine key={index} valueName={inputName} />
+				{(index !== inputs.length-1) ? <span><br/><br/></span> : ""}
+				</>
 		})}
-		<input className='btn' type='submit' action={onClick} name='submit' value={submitButtonValue}></input>
+
+		<br/><br/>
+
+		<input id={`submit-${title}`} className='formBtn' type='submit' action={onClick} name={`submit-${title}`} value={submitButtonValue}></input>
 		</div>
 	)
 }
@@ -16,8 +24,8 @@ function FormStyled({title, inputs, submitButtonValue, onClick}) {
 function InputLine({valueName}) {
 	return (
 		<>
-		<p>{valueName}:</p>
-		<input className='input' type='text' name={valueName} placeholder={`Enter ${valueName} Here`}></input>
+		{valueName}:
+		<input id={`input-${valueName}`} className='formInput' type='text' name={`input-${valueName}`} placeholder={`Enter ${valueName} Here`}></input>
 		</>
 	)
 }

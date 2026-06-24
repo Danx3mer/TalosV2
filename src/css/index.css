@@ -1,0 +1,11 @@
+* {
+	box-sizing: border-box !important;
+}
+
+#root {
+	display: flex;
+	justify-content: center; /* Horizontal centering */
+	align-items: center;     /* Vertical centering */
+	height: 97vh;
+	font-family: "helvetica";
+}
