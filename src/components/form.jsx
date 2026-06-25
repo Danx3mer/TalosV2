@@ -3,6 +3,7 @@ import '.././css/form.css'
 function FormStyled({title, inputs, submitButtonValue, onClick}) {
 	return (
 		<div className="form">
+		<form onSubmit={onClick} method="POST">
 		<h1 id={`form-${title}-title`} className='formTitle'>{title}</h1>
 
 		<hr/><br/>
@@ -10,13 +11,14 @@ function FormStyled({title, inputs, submitButtonValue, onClick}) {
 		{ inputs.map((inputName, index) => {
 			return <>
 				<InputLine key={index} valueName={inputName} />
-				{(index !== inputs.length-1) ? <span><br/><br/></span> : ""}
+				{(index !== inputs.length-1) && <span><br/><br/></span>}
 				</>
 		})}
 
 		<br/><br/>
 
-		<input id={`submit-${title}`} className='formBtn' type='submit' action={onClick} name={`submit-${title}`} value={submitButtonValue}></input>
+		<input id={`submit-${title}`} className='formBtn' type='submit' name={`submit-${title}`} value={submitButtonValue}></input>
+		</form>
 		</div>
 	)
 }
