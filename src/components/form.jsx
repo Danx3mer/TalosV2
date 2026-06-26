@@ -8,12 +8,15 @@ function FormStyled({title, inputs, submitButtonValue, onClick}) {
 
 		<hr/><br/>
 
-		{ inputs.map((inputName, index) => {
-			return <>
-				<InputLine key={index} valueName={inputName} />
-				{(index !== inputs.length-1) && <span><br/><br/></span>}
-				</>
-		})}
+		{
+			Object.entries(inputs).map(([name, onUpdate]) => {
+				return <>
+					<InputLine key={name} valueName={name} valueOnUpdate={onUpdate} />
+					{(name != Object.keys(inputs).at(-1)) && <span><br/><br/></span>}
+					</>
+
+			})
+		}
 
 		<br/><br/>
 
@@ -23,11 +26,18 @@ function FormStyled({title, inputs, submitButtonValue, onClick}) {
 	)
 }
 
-function InputLine({valueName}) {
+function InputLine({valueName, valueOnUpdate}) {
 	return (
 		<>
 		{valueName}:
-		<input id={`input-${valueName}`} className='formInput' type='text' name={`input-${valueName}`} placeholder={`Enter ${valueName} Here`}></input>
+		<input 
+		id={`input-${valueName}`} 
+		onChange={valueOnUpdate} 
+		className='formInput' 
+		type='text' 
+		name={`input-${valueName}`} 
+		placeholder={`Enter ${valueName} Here`}>
+		</input>
 		</>
 	)
 }
