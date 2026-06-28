@@ -1,5 +1,9 @@
 import { useState } from 'react'
 
+import { login } from "../services/db.js"
+import { userType } from "../services/db.js"
+import { createCookie } from "../services/createCookie.js"
+
 import FormStyled from '../components/form.jsx'
 import '../css/login.css'
 
@@ -9,7 +13,13 @@ function Login() {
 
 	const handleLogin = (e) => {
 		e.preventDefault()
-		alert(username + password)	
+		
+		const success = login(username, password)
+		
+		if(success) {
+			createCookie("Username", username);
+			createCookie("Type", userType(username));
+		}
 	};
 
 	const handleUsernameChange = (e) => {
