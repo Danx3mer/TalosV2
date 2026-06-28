@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 import '.././css/form.css'
 
 function FormStyled({title, inputs, submitButtonValue, onClick}) {
@@ -10,10 +12,10 @@ function FormStyled({title, inputs, submitButtonValue, onClick}) {
 
 		{
 			Object.entries(inputs).map(([name, onUpdate]) => {
-				return <>
-					<InputLine key={name} valueName={name} valueOnUpdate={onUpdate} />
+				return <Fragment key={name}>
+					<InputLine valueName={name} valueOnUpdate={onUpdate} />
 					{(name != Object.keys(inputs).at(-1)) && <span><br/><br/></span>}
-					</>
+					</Fragment>
 
 			})
 		}

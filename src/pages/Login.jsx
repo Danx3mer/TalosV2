@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { login } from "../services/db.js"
 import { userType } from "../services/db.js"
-import { createCookie } from "../services/createCookie.js"
+import { setCookie } from "../services/manageCookies.js"
 
 import FormStyled from '../components/form.jsx'
 import '../css/login.css'

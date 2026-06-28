@@ -1,0 +1,22 @@
+export function setCookie(name, value) {
+	document.cookie = `${name}=${value}; expires=86400`
+}
+
+export function getCookie(cookieName) {
+	let cookies = document.cookie.split(";");
+
+	for(let i=0; i<cookies.length; i++) {
+		let pair = cookies[i].split('=');
+		let key = pair[0].trim();
+
+		if(key === cookieName) {
+			return pair[1].trim();
+		}
+	}
+
+	return null;
+}
+
+export function parseCookieArray(cookie) {
+	return JSON.parse(cookie.replace(/'/g, '"'));
+}
