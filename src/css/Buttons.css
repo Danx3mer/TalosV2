@@ -1,0 +1,40 @@
+.NavbarBtn {
+	display: inline-block;
+	margin: 8px;
+	text-decoration: None;
+	padding: 8px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 3px 3px 5px #000000;
+
+	position: relative;
+	padding: 5% 5%;
+	background-color: gray;
+	border: dashed black;
+	color: white;
+	text-align: center;
+	font-size: 16px;
+	cursor: pointer;
+		
+	transform: translateY(0%);
+
+	transition: transform 0.2s ease-out, box-shadow 0.2s ease-in-out;
+}
+
+.NavbarBtn:hover {
+	transform: translateY(-5px);
+	box-shadow: 	0px 15px 20px rgba(154, 160, 185, .5),
+			0px 5px 5px rgba(166,173,201,.3); 
+}
+
+.neutralBtn:hover {
+	background-color: skyblue;
+}
+
+.negativeBtn:hover {
+	background-color: pink;
+}
+
+.positiveBtn:hover {
+	background-color: lightgreen;
+}
+

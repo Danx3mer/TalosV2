@@ -2,10 +2,14 @@
 	box-sizing: border-box !important;
 }
 
+body {
+	margin: 0px;
+}
+
 #root {
 	display: flex;
 	justify-content: center; /* Horizontal centering */
 	align-items: center;     /* Vertical centering */
-	height: 97vh;
+	height: 100vh;
 	font-family: "helvetica";
 }
