@@ -12,44 +12,7 @@
             "funny": "50"
         }
     },
-    "algebra": {
-        "Name": "algebra",
-        "Teacher": [],
-        "Student": []
-    },
-    "alg": {
-        "Name": "algebra",
-        "Teacher": [],
-        "Student": []
-    },
-    "alg2": {
-        "Name": "algebra 2",
-        "Teacher": [],
-        "Student": []
-    },
-    "Funny": {
-        "Name": "Funnier",
-        "Teacher": [],
-        "Student": []
-    },
-    "comedy": {
-        "Name": "comedy 101",
-        "Teacher": [],
-        "Student": []
-    },
-    "precalc": {
-        "Name": "Precalculus",
-        "Teacher": [
-            "Mr. Manita"
-        ],
-        "Student": []
-    },
-    "precalc2": {
-        "Name": "Precalculus",
-        "Teacher": [],
-        "Student": []
-    },
-    "calc": {
+   "calc": {
         "Name": "calculus",
         "Teacher": [
             "Manita"

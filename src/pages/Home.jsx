@@ -1,4 +1,5 @@
 import { getCookie } from "../services/manageCookies.js"
+import { parseCookieArray } from "../services/manageCookies.js"
 
 import "../css/home.css"
 
@@ -9,13 +10,14 @@ import Header from "../components/Header.jsx"
 export default function Home() {
 	const uType = getCookie("Type")
 	const uName = getCookie("Username")
-	
+	const uData = parseCookieArray(getCookie("Data"))
+                    
 	return (
 		<div className="Container">
-		<NavBar name={uName} type={uType} />
+		<NavBar data={uData} user={uName} type={uType} data={uData}/>
 		<main>
-		<Header name={uName} type={uType} />
-		<Dashboard name={uName} type={uType} />
+		<Header user={uName} type={uType} data={uData}/>
+		<Dashboard user={uName} type={uType} data={uData} />
 		</main>
 		</div>
 	);	

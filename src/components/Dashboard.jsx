@@ -1,6 +1,6 @@
 import "../css/Dashboard.css"
 
-export default function Dashboard(user, type) {
+export default function Dashboard({user, type, data}) {
 	return (
 		<div id="Dashboard">
 			

@@ -1,5 +1,5 @@
-export function setCookie(name, value) {
-	document.cookie = `${name}=${value}; expires=86400`
+export function setCookie(name, value, seconds=86400) {
+	document.cookie = `${name}=${value}; expires=${seconds}`
 }
 
 export function getCookie(cookieName) {
@@ -18,5 +18,9 @@ export function getCookie(cookieName) {
 }
 
 export function parseCookieArray(cookie) {
-	return JSON.parse(cookie.replace(/'/g, '"'));
+	try {
+		return JSON.parse(cookie.replace(/'/g, '"'));
+	} catch(e) {
+		return [cookie]
+	}
 }

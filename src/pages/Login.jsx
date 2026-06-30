@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 import { login } from "../services/db.js"
 import { userType } from "../services/db.js"
+import { userData } from "../services/db.js"
+
 import { setCookie } from "../services/manageCookies.js"
 
 import FormStyled from '../components/form.jsx'
@@ -10,6 +13,7 @@ import '../css/login.css'
 function Login() {
 	var [ username, setUsername ] = useState("")
 	var [ password, setPassword ] = useState("")
+	var navigate = useNavigate()
 
 	const handleLogin = (e) => {
 		e.preventDefault()
@@ -17,8 +21,11 @@ function Login() {
 		const success = login(username, password)
 		
 		if(success) {
-			createCookie("Username", username);
-			createCookie("Type", userType(username));
+			setCookie("Username", username);
+			setCookie("Type", userType(username));
+			setCookie("Data", userData(username)); 
+
+			navigate('/home-page')
 		}
 	};
 
