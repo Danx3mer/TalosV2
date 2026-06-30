@@ -67,3 +67,10 @@ export function courseName(cID) {
   if (!Object.keys(COURSE_DB).includes(cID)) return false;
   return COURSE_DB[cID]["Name"];
 }
+
+export function getUsersOfCourse(uType, cID) {
+  if (!["Teacher", "Student"].includes(uType)) return false;
+  if (!Object.keys(COURSE_DB).includes(cID)) return false;
+
+  return COURSE_DB[cID][uType];
+}
