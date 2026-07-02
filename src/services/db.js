@@ -15,8 +15,8 @@ export function userType(u) {
 
 function getAmtUsersOfType(t) {
   var amt = 0;
-  for (var user of USER_DB) {
-    if (user["Type"] === t) amt++;
+  for (const [uName, uData] of Object.entries(USER_DB)) {
+    if (uData["Type"] === t) amt++;
   }
   return amt;
 }
@@ -46,9 +46,9 @@ export function userData(uName) {
   switch (uType) {
     case "Admin":
       {
-        amtTeachers = getAmtUsersOfType("Teacher");
-        amtStudents = getAmtUsersOfType("Student");
-        amtCourses = getaAmtCourses();
+        var amtTeachers = getAmtUsersOfType("Teacher");
+        var amtStudents = getAmtUsersOfType("Student");
+        var amtCourses = getAmtCourses();
 
         return [amtTeachers, amtStudents, amtCourses];
       }

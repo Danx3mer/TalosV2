@@ -9,13 +9,13 @@ export default function NavBar({user, type, data}) {
 		return (
 			<>
 			<h4>Course</h4>
-			<a className="NavbarBtn positiveBtn" href="courses.html?mode=add">Add a course</a>
-			<a className="NavbarBtn negativeBtn" href="courses.html?mode=del">Delete a course</a>
+			<a className="NavbarBtn positiveBtn" href="courses?mode=add">Add a course</a>
+			<a className="NavbarBtn negativeBtn" href="courses?mode=del">Delete a course</a>
 
 			<h4>User</h4>
-			<a className="NavbarBtn positiveBtn" href="users.html?mode=add">Add user</a>
-			<a className="NavbarBtn negativeBtn" href="users.html?mode=del">Delete user</a>
-			<a className="NavbarBtn neutralBtn" href="users.html?mode=assign">Modify user</a>
+			<a className="NavbarBtn positiveBtn" href="users?mode=add">Add user</a>
+			<a className="NavbarBtn negativeBtn" href="users?mode=del">Delete user</a>
+			<a className="NavbarBtn neutralBtn" href="users?mode=assign">Modify user</a>
 			</>
 		);
 	}
@@ -34,7 +34,7 @@ export default function NavBar({user, type, data}) {
 			{courses.map(((courseID, index) => {
 				var cName = courseName(courseID)
 				return (
-					<a key={index} className="NavbarBtn neutralBtn" href={`course.html?course=${courseID}`}>{cName}</a>
+					<a key={index} className="NavbarBtn neutralBtn" href={`course?course=${courseID}`}>{cName}</a>
 				)
 			}))}	
 			</>
