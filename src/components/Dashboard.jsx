@@ -49,7 +49,6 @@ export default function Dashboard({user, type, data}) {
 			{uData.map(((courseID, index) => {
 				var cName = courseName(courseID)
 				var courseTeachers = getUsersOfCourse("Teacher", courseID)
-				console.log(courseTeachers)
 				var courseGrade = getUsersOfCourse("Student", courseID)[user]
 
 				return (

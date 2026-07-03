@@ -1,8 +1,10 @@
-import "../css/NavBar.css"
-import "../css/Buttons.css"
+import { useNavigate } from 'react-router'
 
 import { courseName } from "../services/db.js"
 import { setCookie } from "../services/manageCookies.js"
+
+import "../css/NavBar.css"
+import "../css/Buttons.css"
 
 export default function NavBar({user, type, data}) {
 	const adminNavbar = () => {
@@ -62,7 +64,9 @@ function LogoutButton() {
 	const logout = () => {
 		setCookie("Username", "", -1);
 		setCookie("Type", "", -1);
-		setCookie("Data", "", -1); 
+		setCookie("Data", "", -1);
+
+		navigate('/login')
 	}
 
 	return (
@@ -70,7 +74,7 @@ function LogoutButton() {
 		<hr></hr>
 		<hr></hr>
 		<br></br>
-		<a className="NavbarBtn negativeBtn" id="Logout" href="login" onClick={logout()}>Logout</a>
+		<a className="NavbarBtn negativeBtn" id="Logout" href="login" onClick={logout}>Logout</a>
 		</>
 	);
 }

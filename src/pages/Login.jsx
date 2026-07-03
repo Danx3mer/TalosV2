@@ -8,6 +8,7 @@ import { userData } from "../services/db.js"
 import { setCookie } from "../services/manageCookies.js"
 
 import FormStyled from '../components/form.jsx'
+
 import '../css/login.css'
 
 function Login() {
