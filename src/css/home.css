@@ -1,4 +1,6 @@
 main {
+	display: flex;
+	flex-direction: column;
 	position: absolute;
 	margin-left: 15%;
 	width: 85%;
