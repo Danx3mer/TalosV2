@@ -16,12 +16,11 @@ export default function CourseEdit() {
 	const uData = parseCookieArray(getCookie("Data"))
 	const editMode = getGETParam("mode")
 
-	console.log(editMode)
 	return (
 		<div className = "Container">
-		<NavBar data={uData} user={uName} type={uType} />
+		<NavBar data={uData} type={uType} />
 		<main>
-		{
+		{ uType === "Admin" &&
 			{
 				"add": CourseAdd(),
 					"del": CourseDel()

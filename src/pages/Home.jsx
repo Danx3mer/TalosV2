@@ -15,7 +15,7 @@ export default function Home() {
                     
 	return (
 		<div className="Container">
-		<NavBar data={uData} user={uName} type={uType} data={uData}/>
+		<NavBar data={uData} type={uType} />
 		<main>
 		<Header user={uName} type={uType} data={uData}/>
 		<hr></hr>

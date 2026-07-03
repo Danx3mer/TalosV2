@@ -1,12 +1,11 @@
 import { useNavigate } from 'react-router'
-
 import { courseName } from "../services/db.js"
 import { setCookie } from "../services/manageCookies.js"
 
 import "../css/NavBar.css"
 import "../css/Buttons.css"
 
-export default function NavBar({user, type, data}) {
+export default function NavBar({type, data}) {
 	const adminNavbar = () => {
 		return (
 			<>
