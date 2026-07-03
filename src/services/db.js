@@ -50,9 +50,6 @@ export function userData(uName) {
         var amtStudents = getAmtUsersOfType("Student");
         var amtCourses = getAmtCourses();
 
-        console.log(amtTeachers);
-        console.log(amtStudents);
-        console.log(amtCourses);
         return [amtTeachers, amtStudents, amtCourses];
       }
       break;

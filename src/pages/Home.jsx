@@ -11,7 +11,6 @@ export default function Home() {
 	const uType = getCookie("Type")
 	const uName = getCookie("Username")
 	const uData = parseCookieArray(getCookie("Data"))
-	console.log(uData)
                     
 	return (
 		<div className="Container">

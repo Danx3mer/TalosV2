@@ -52,7 +52,6 @@ function GradeRow(name, initialGrade) {
 	const [ grade, setGrade	] = useState(initialGrade)
 
 	const handleGradeUpdate = (e) => {
-		console.log(e.target.name + e.target.value);
 		setGrade(e.target.value);
 	}
 
