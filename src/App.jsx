@@ -1,5 +1,6 @@
 import Login from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
+import UserEdit from './pages/UserEdit.jsx'
 import CourseEdit from './pages/CourseEdit.jsx'
 
 import { Routes, Route } from 'react-router'
@@ -10,6 +11,7 @@ export default function App() {
 		<Route path="/login" element=<Login/>/>
 		<Route path="/home-page" element=<Home/>/>
 		<Route path="/courses" element=<CourseEdit/>/>
+		<Route path="/users" element=<UserEdit/>/>
 		</Routes>
 	);
 }
