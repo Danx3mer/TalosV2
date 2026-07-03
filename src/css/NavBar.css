@@ -22,3 +22,7 @@
 body:has(#NavBar:hover) .Container {
 	backdrop-filter: brightness(50%); /* Blurs and darkens */
 }
+
+body:has(#NavBar:hover) .formBtn {
+	opacity: 0.2;
+}

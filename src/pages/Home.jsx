@@ -18,6 +18,7 @@ export default function Home() {
 		<NavBar data={uData} user={uName} type={uType} data={uData}/>
 		<main>
 		<Header user={uName} type={uType} data={uData}/>
+		<hr></hr>
 		<Dashboard user={uName} type={uType} data={uData} />
 		</main>
 		</div>
