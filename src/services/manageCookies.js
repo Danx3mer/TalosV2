@@ -18,9 +18,5 @@ export function getCookie(cookieName) {
 }
 
 export function parseCookieArray(cookie) {
-  try {
-    return JSON.parse(cookie.replace(/'/g, '"'));
-  } catch (e) {
-    return [cookie];
-  }
+  return cookie.split(",");
 }

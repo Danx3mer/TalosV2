@@ -7,7 +7,7 @@ export default function Dashboard({user, type, data}) {
 	const adminDashboard = (uData) => {
 		return (
 			<>
-			<h4>There are currently ${uData[0]} teachers, ${uData[1]} students, and ${uData[2]} courses taught!</h4>
+			<h4>There are currently {uData[0]} teachers, {uData[1]} students, and {uData[2]} courses taught!</h4>
 			<h3>Welcome to the admin dashboard! Use the navigation bar on your left to modify your school!</h3>
 			</>
 		)

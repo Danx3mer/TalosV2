@@ -50,6 +50,9 @@ export function userData(uName) {
         var amtStudents = getAmtUsersOfType("Student");
         var amtCourses = getAmtCourses();
 
+        console.log(amtTeachers);
+        console.log(amtStudents);
+        console.log(amtCourses);
         return [amtTeachers, amtStudents, amtCourses];
       }
       break;
@@ -60,7 +63,7 @@ export function userData(uName) {
 
 // COURSE DB
 function getAmtCourses() {
-  return COURSE_DB.length;
+  return Object.keys(COURSE_DB).length;
 }
 
 export function courseName(cID) {
