@@ -1,17 +1,16 @@
-# TalosV2, on React
-# React + Vite
+# TalosV2
+<hr>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## What is Talos V2?
+This was originally my school's final project aimed at testing one's web development skills. For this project the only requirements were that we were to use python's cgi (common gateway interface) tools in order to retrieve data found in a form that a user would fill out.
+I decided to create a scaled down version of my school's directory management system, called Talos (hence the name, Talos V2).
 
-Currently, two official plugins are available:
+## How does this project work?
+The first version of the project was tailored towards the rubric that my CS teacher provided us for the final project, and as such uses no fancy frameworks or outside APIs to enhance the development experience. The main flow for how the user was planned to interact with this project was to fill out a form, which would then be parsed via using python's cgi library to then create a cookie stored on the user's device for a day. Javascript would then be utilized to read the cookie and update the webpage based off of the contents of the cookie. Regular CSS was used to style the website. The whole thing is being hosted on my school's apache server, which allows for execution of cgi scripts under an older version of python. Finally, 2 JSON databases were utilized to store user data throughout sessions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## What's next?
+Python CGI is outdated. The final version of this project will look something like this:
+- [x] No CGI, instead using javascript for handling form updates
+- [x] Instead of just using HTML, I will be utilizing React.js for the layout of the website
+- [] Instead of regular CSS, I will be utilizing tailwind CSS for the styling of the website
+- [] (Next feature!) Instead of 2 JSON files, I will be using SupaBase to save the data
