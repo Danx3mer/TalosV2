@@ -1,9 +1,9 @@
 {
 	"routes": [
-		{ "src": "/login", "dest": "/" },
-		{ "src": "/home-page", "dest": "/" },
-		{ "src": "/users", "dest": "/" },
-		{ "src": "/courses", "dest": "/" }
-		{ "src": "/course", "dest": "/" }
+		{ "src": "/login", "dest": "/index.html" },
+		{ "src": "/home-page", "dest": "/index.html" },
+		{ "src": "/users", "dest": "/index.html" },
+		{ "src": "/courses", "dest": "/index.html" },
+		{ "src": "/course", "dest": "/index.html" }
 	]
 }
