@@ -1,6 +1,18 @@
 import USER_DB from "../databases/user.json";
 import COURSE_DB from "../databases/course.json";
 
+import { supabase } from "./supabase.ts";
+
+// SUPABASE AUTH
+export async function loginS(u, p) {
+  const { data, e } = await supabase.auth.signInWithPassword({
+    email: `${u.toLowerCase()}@talosv2.com`,
+    password: p,
+  });
+
+  return data["session"] !== null;
+}
+
 function userInDB(u) {
   return u in USER_DB;
 }

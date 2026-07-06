@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
-import { login } from "../services/db.js"
+import { loginS } from "../services/db.js"
 import { userType } from "../services/db.js"
 import { userData } from "../services/db.js"
 
@@ -19,16 +19,16 @@ function Login() {
 	const handleLogin = (e) => {
 		e.preventDefault()
 		
-		const success = login(username, password)
-		
-		if(success) {
+		loginS(username, password).then(success => {
+			if(!success) return;
+
 			setCookie("Username", username);
 			setCookie("Type", userType(username));
 			setCookie("Data", userData(username)); 
 
 			navigate('/home-page')
-		}
-	};
+		})
+	}
 
 	const handleUsernameChange = (e) => {
 		setUsername(e.target.value)
