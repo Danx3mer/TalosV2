@@ -4,13 +4,23 @@ import COURSE_DB from "../databases/course.json";
 import { supabase } from "./supabase.ts";
 
 // SUPABASE AUTH
-export async function loginS(u, p) {
+export async function loginS(username, password) {
   const { data, e } = await supabase.auth.signInWithPassword({
-    email: `${u.toLowerCase()}@talosv2.com`,
-    password: p,
+    email: `${username.toLowerCase()}@talosv2.com`,
+    password: password,
   });
 
   return data["session"] !== null;
+}
+
+// SUPABASE USER TYPE DB
+export async function userTypeS(username) {
+  const { data, e } = await supabase
+    .from("user_types")
+    .select("type")
+    .eq("username", username);
+
+  return data[0]["type"];
 }
 
 function userInDB(u) {

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
 import { loginS } from "../services/db.js"
+import { userTypeS } from "../services/db.js"
 import { userType } from "../services/db.js"
 import { userData } from "../services/db.js"
 
@@ -26,6 +27,10 @@ function Login() {
 			setCookie("Type", userType(username));
 			setCookie("Data", userData(username)); 
 
+			// TODO: remove the function call below for prod
+			userTypeS(username).then(data => {
+				console.log(data)
+			})
 			navigate('/home-page')
 		})
 	}
