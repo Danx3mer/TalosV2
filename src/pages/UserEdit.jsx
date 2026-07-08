@@ -38,13 +38,28 @@ function UserAdd() {
 	const [ userType, setUserType ] = useState("")
 	
 	const handleUserAdd = (e) => {
+		e.preventDefault()
+		console.log(userName)
+		// createUser(userName, userPassword, userType).then(e => {console.log(e)})
+	}
+
+	const handleUNameChange = (e) => {
+		setUserName(e.target.value)
+	}
+
+	const handlePasswordChange = (e) => {
+		setUserPassword(e.target.value)
+	}
+
+	const handleUTypeChange = (e) => {
+		setUserType(e.target.value)
 	}
 
 	const inputLines = 
 		{ 
-			"Username": setUserName,
-			"User Password": setUserPassword,
-			"User Type": setUserType
+			"Username": handleUNameChange,
+			"User Password": handlePasswordChange,
+			"User Type": handleUTypeChange
 		}
 	
 	return ( 
@@ -58,9 +73,13 @@ function UserDel() {
 	const handleUserDel = (e) => {
 	}
 
+	const handleUNameChange = (e) => {
+		setUserName(e.target.value)
+	}
+	
 	const inputLines = 
 		{ 
-			"Username": setUserName
+			"Username": handleUNameChange
 		}
 	
 	return ( 
@@ -75,10 +94,18 @@ function UserAssign() {
 	const handleUserAssign = (e) => {
 	}
 
+	const handleCIDChange = (e) => {
+		setCourseID(e.target.value)
+	}
+
+	const handleUNameChange = (e) => {
+		setUserName(e.target.value)
+	}
+
 	const inputLines = 
 		{ 
-			"Username": setUserName,
-			"Course ID": setCourseID
+			"Username": handleUNameChange,
+			"Course ID": handleCIDChange
 		}
 	
 	return ( 

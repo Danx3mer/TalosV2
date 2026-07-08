@@ -3,10 +3,13 @@ import { useState } from "react"
 import { getCookie } from "../services/manageCookies.js"
 import { parseCookieArray } from "../services/manageCookies.js"
 
-import NavBar from "../components/NavBar.jsx"
-import FormStyled from "../components/Form.jsx"
+import { createCourse } from "../services/db.js"
+import { deleteCourse } from "../services/db.js"
 
 import { getGETParam } from "../services/httpRequests.js"
+
+import NavBar from "../components/NavBar.jsx"
+import FormStyled from "../components/Form.jsx"
 
 import "../css/AdminActions.css"
 
@@ -36,12 +39,22 @@ function CourseAdd() {
 	const [ courseName, setCourseName ] = useState("")
 	
 	const handleCourseAdd = (e) => {
+		e.preventDefault()
+		createCourse(courseID, courseName).then(e => {console.log(e)})	
+	}
+
+	const handleCourseIDChange = (e) => {
+		setCourseID(e.target.value)
+	}
+
+	const handleCourseNameChange = (e) => {
+		setCourseName(e.target.value)
 	}
 
 	const inputLines = 
 		{ 
-			"Course ID": setCourseID,
-			"Course Name": setCourseName
+			"Course ID": handleCourseIDChange,
+			"Course Name": handleCourseNameChange
 		}
 	
 	return ( 
@@ -53,11 +66,17 @@ function CourseDel() {
 	const [ courseID, setCourseID ] = useState("")
 	
 	const handleCourseDel = (e) => {
+		e.preventDefault()
+		deleteCourse(courseID).then(e => {console.log(e)})
+	}
+
+	const handleCourseIDChange = (e) => {
+		setCourseID(e.target.value)
 	}
 
 	const inputLines = 
 		{ 
-			"Course ID": setCourseID,
+			"Course ID": handleCourseIDChange,
 		}
 	
 	return ( 

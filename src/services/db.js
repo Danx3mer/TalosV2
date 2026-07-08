@@ -13,14 +13,35 @@ export async function loginS(username, password) {
   return data["session"] !== null;
 }
 
-// SUPABASE USER TYPE DB
+// SUPABASE PROFILES DB
 export async function userTypeS(username) {
   const { data, e } = await supabase
-    .from("user_types")
+    .from("profiles")
     .select("type")
     .eq("username", username);
 
   return data[0]["type"];
+}
+
+//SUPABASE COURSE DB
+export async function createCourse(cID, cName) {
+  const { error } = await supabase
+    .from("courses")
+    .insert({ id: cID, name: cName });
+
+  return error;
+}
+
+export async function deleteCourse(cID) {
+  const { error } = await supabase.from("courses").delete().eq("id", cID);
+
+  return error;
+}
+
+export async function getCourse(cID) {
+  const { data, error } = await supabase.from("courses").select().eq("id", cID);
+
+  return data;
 }
 
 function userInDB(u) {
