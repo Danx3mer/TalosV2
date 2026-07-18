@@ -2,7 +2,10 @@ import { useState } from "react"
 
 import { getCookie } from "../services/manageCookies.js"
 import { parseCookieArray } from "../services/manageCookies.js"
+
 import { createUserS } from "../services/db.js"
+import { deleteUserS } from "../services/db.js"
+
 import NavBar from "../components/NavBar.jsx"
 import FormStyled from "../components/Form.jsx"
 
@@ -39,7 +42,6 @@ function UserAdd() {
 	
 	const handleUserAdd = (e) => {
 		e.preventDefault()
-		console.log(userName)
 		createUserS(userName, userPassword, userType).then(e => {console.log(e)})
 	}
 
@@ -71,6 +73,8 @@ function UserDel() {
 	const [ userName, setUserName ] = useState("")
 	
 	const handleUserDel = (e) => {
+		e.preventDefault()
+		deleteUserS(userName).then(e => {console.log(e)})
 	}
 
 	const handleUNameChange = (e) => {

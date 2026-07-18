@@ -57,9 +57,18 @@ export async function createUserS(username, password, uType) {
 		.from("profiles")
 		.insert({ type: uType, username: username, uid: data["user"]["id"] })
 
-	console.log(data["user"]["id"])
-
 	return dataProfile
+}
+
+export async function deleteUserS(username) {
+	const { user, error } = await supabase.functions.invoke('delete-account', {
+		method: 'POST',
+		body: {
+			username: username
+		}
+	})
+
+	return user
 }
 
 function userInDB(u) {
