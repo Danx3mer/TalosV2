@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import { getCookie } from "../services/manageCookies.js"
 import { parseCookieArray } from "../services/manageCookies.js"
-
+import { createUserS } from "../services/db.js"
 import NavBar from "../components/NavBar.jsx"
 import FormStyled from "../components/Form.jsx"
 
@@ -40,7 +40,7 @@ function UserAdd() {
 	const handleUserAdd = (e) => {
 		e.preventDefault()
 		console.log(userName)
-		// createUser(userName, userPassword, userType).then(e => {console.log(e)})
+		createUserS(userName, userPassword, userType).then(e => {console.log(e)})
 	}
 
 	const handleUNameChange = (e) => {

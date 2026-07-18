@@ -44,6 +44,24 @@ export async function getCourse(cID) {
   return data;
 }
 
+export async function createUserS(username, password, uType) {
+	const { data, error } = await supabase.functions.invoke('create-account', {
+		method: 'POST',
+		body: {
+			email: `${username.toLowerCase()}@talosv2.com`,
+			password: password
+		}
+	})
+
+	const { dataProfile, errorProfile } = await supabase
+		.from("profiles")
+		.insert({ type: uType, username: username, uid: data["user"]["id"] })
+
+	console.log(data["user"]["id"])
+
+	return dataProfile
+}
+
 function userInDB(u) {
   return u in USER_DB;
 }
