@@ -5,6 +5,7 @@ import { parseCookieArray } from "../services/manageCookies.js"
 
 import { createUserS } from "../services/db.js"
 import { deleteUserS } from "../services/db.js"
+import { assignUserToCourse } from "../services/db.js"
 
 import NavBar from "../components/NavBar.jsx"
 import FormStyled from "../components/Form.jsx"
@@ -96,6 +97,8 @@ function UserAssign() {
 	const [ courseID, setCourseID ] = useState("")
 	
 	const handleUserAssign = (e) => {
+		e.preventDefault()
+		assignUserToCourse(userName, courseID).then(e => {console.log(e)})
 	}
 
 	const handleCIDChange = (e) => {

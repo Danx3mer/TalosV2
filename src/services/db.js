@@ -3,45 +3,82 @@ import COURSE_DB from "../databases/course.json";
 
 import { supabase } from "./supabase.ts";
 
+async function selectData(relation, col, identifierCol, identifierVal) {
+	const { data, error } = await supabase
+		.from(relation)
+		.select(col)
+		.eq(identifierCol, identifierVal)
+
+	return data[0][col]
+}
+
 // SUPABASE AUTH
 export async function loginS(username, password) {
-  const { data, e } = await supabase.auth.signInWithPassword({
-    email: `${username.toLowerCase()}@talosv2.com`,
-    password: password,
-  });
+	const { data, e } = await supabase.auth.signInWithPassword({
+		email: `${username.toLowerCase()}@talosv2.com`,
+		password: password,
+	});
 
-  return data["session"] !== null;
+	return data["session"] !== null;
 }
 
 // SUPABASE PROFILES DB
 export async function userTypeS(username) {
-  const { data, e } = await supabase
-    .from("profiles")
-    .select("type")
-    .eq("username", username);
-
-  return data[0]["type"];
+	return selectData("profiles", "type", "username", username);
 }
 
 //SUPABASE COURSE DB
 export async function createCourse(cID, cName) {
-  const { error } = await supabase
-    .from("courses")
-    .insert({ id: cID, name: cName });
+	const { error } = await supabase
+		.from("courses")
+		.insert({ id: cID, name: cName });
 
-  return error;
+	return error;
 }
 
 export async function deleteCourse(cID) {
-  const { error } = await supabase.from("courses").delete().eq("id", cID);
+	const { error } = await supabase.from("courses").delete().eq("id", cID);
 
-  return error;
+	return error;
 }
 
 export async function getCourse(cID) {
-  const { data, error } = await supabase.from("courses").select().eq("id", cID);
+	const { data, error } = await supabase.from("courses").select().eq("id", cID);
 
-  return data;
+	return data;
+}
+
+export async function assignUserToCourse(uName, cID) {
+	const uType = await userTypeS(uName)
+
+	console.log(uType)
+
+	if(uType === "Teacher") {
+		var oldData = await selectData("courses", "teachers", "id", cID)
+		
+		console.log(oldData)
+
+		oldData.push(uName);
+
+		const { data, error } = await supabase
+			.from("courses")
+			.update({"teachers": oldData})
+			.eq("id", cID)
+
+		return data
+	}
+	else {
+		var oldData = await selectData("courses", "students", "id", cID)
+
+		oldData[uName] = 0;
+
+		const { data, error } = await supabase
+			.from("courses")
+			.update({"students": oldData})
+			.eq("id", cID)
+
+		return data
+	}
 }
 
 export async function createUserS(username, password, uType) {
