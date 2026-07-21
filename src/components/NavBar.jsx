@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router'
+import { useState, useEffect } from "react"
+
 import { courseName } from "../services/db.js"
 import { setCookie } from "../services/manageCookies.js"
 
@@ -6,6 +8,9 @@ import "../css/NavBar.css"
 import "../css/Buttons.css"
 
 export default function NavBar({type, data}) {
+	const [ isLoading, setLoading ] = useState(true)
+	const [ courses, setCourses ] = useState({})
+
 	const adminNavbar = () => {
 		return (
 			<>
@@ -21,8 +26,8 @@ export default function NavBar({type, data}) {
 		);
 	}
 
-	const teacherNavbar = (courses) => {
-		if(courses.length == 0) {
+	const teacherNavbar = (courseIDs) => {
+		if(courseIDs.length == 0) {
 			return (
 				<>
 				<h3>You are currently not teaching any classes! Contact the Admin</h3>
@@ -30,17 +35,38 @@ export default function NavBar({type, data}) {
 			);
 		}
 
-		return (
-			<>
-			{courses.map(((courseID, index) => {
-				var cName = courseName(courseID)
-				return (
-					<a key={index} className="NavbarBtn neutralBtn" href={`course?course=${courseID}`}>{cName}</a>
-				)
-			}))}	
-			</>
-		);
+		if(isLoading) return <p>Loading...</p>
+			else return (
+				<>
+				{courseIDs.map(((courseID, index) => {
+					let cName = courses[courseID]
+					return (
+						<a key={index} className="NavbarBtn neutralBtn" href={`course?course=${courseID}`}>{cName}</a>
+					)
+				}))}	
+				</>
+			);
 	}
+
+	useEffect(() => {
+		async function retrieveCourseNames() {
+			if(type === "Admin") return true;
+
+			let courseJson = {}
+			for(let cID of data) {
+				courseJson[cID] = await courseName(cID)
+			}
+
+			setCourses(courseJson)
+
+			console.log(courseJson)
+			return true
+		}
+
+		retrieveCourseNames()
+
+		return () => { setLoading(false) }
+	}, [])
 
 	return (
 		<>
@@ -49,8 +75,8 @@ export default function NavBar({type, data}) {
 		{
 			{
 				"Admin": adminNavbar(),
-				"Teacher": teacherNavbar(data),
-				"Student": true 
+					"Teacher": teacherNavbar(data),
+					"Student": true 
 			}[type] || <h4>Invalid User!</h4> /* Cool JS object lookup trick I learned*/
 		}
 		{["Admin", "Teacher", "Student"].includes(type) && <LogoutButton />}

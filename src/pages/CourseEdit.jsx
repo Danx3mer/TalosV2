@@ -26,7 +26,7 @@ export default function CourseEdit() {
 		{ uType === "Admin" &&
 			{
 				"add": CourseAdd(),
-					"del": CourseDel()
+				"del": CourseDel()
 			}[editMode] || <h2>Invalid URL. Available editing modes include "add" and "del"</h2>
 		}
 		</main>
@@ -37,7 +37,7 @@ export default function CourseEdit() {
 function CourseAdd() {
 	const [ courseID, setCourseID ] = useState("")
 	const [ courseName, setCourseName ] = useState("")
-	
+
 	const handleCourseAdd = (e) => {
 		e.preventDefault()
 		createCourse(courseID, courseName).then(e => {console.log(e)})	
@@ -56,7 +56,7 @@ function CourseAdd() {
 			"Course ID": handleCourseIDChange,
 			"Course Name": handleCourseNameChange
 		}
-	
+
 	return ( 
 		<FormStyled title="Add a Course" inputs={inputLines} submitButtonValue="Add!" onClick={handleCourseAdd} />
 	)
@@ -64,7 +64,7 @@ function CourseAdd() {
 
 function CourseDel() {
 	const [ courseID, setCourseID ] = useState("")
-	
+
 	const handleCourseDel = (e) => {
 		e.preventDefault()
 		deleteCourse(courseID).then(e => {console.log(e)})
@@ -78,7 +78,7 @@ function CourseDel() {
 		{ 
 			"Course ID": handleCourseIDChange,
 		}
-	
+
 	return ( 
 		<FormStyled title="Delete a Course" inputs={inputLines} submitButtonValue="Delete!" onClick={handleCourseDel} />
 	)

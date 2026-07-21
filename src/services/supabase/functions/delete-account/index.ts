@@ -8,9 +8,9 @@ const corsHeaders = {
 async function getUserID(sClient, username) {
   let { data, error } = await sClient.auth.admin.listUsers()
 
-    var res = "none"
+  let res = "none"
 
-    for(var user of data["users"]) {
+  for (let user of data["users"]) {
       if(user["email"] === `${username}@talosv2.com`) res = user["id"]
     }
 

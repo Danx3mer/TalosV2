@@ -27,7 +27,7 @@ export default function CourseEdit() {
 		{ uType === "Admin" &&
 			{
 				"add": UserAdd(),
-					"del": UserDel(),
+				"del": UserDel(),
 				"assign": UserAssign()
 			}[editMode] || <h2>Invalid URL. Available editing modes include "add", "del", and "assign"</h2>
 		}
@@ -40,7 +40,7 @@ function UserAdd() {
 	const [ userName, setUserName ] = useState("")
 	const [ userPassword, setUserPassword ] = useState("")
 	const [ userType, setUserType ] = useState("")
-	
+
 	const handleUserAdd = (e) => {
 		e.preventDefault()
 		createUserS(userName, userPassword, userType).then(e => {console.log(e)})
@@ -64,7 +64,7 @@ function UserAdd() {
 			"User Password": handlePasswordChange,
 			"User Type": handleUTypeChange
 		}
-	
+
 	return ( 
 		<FormStyled title="Add a User" inputs={inputLines} submitButtonValue="Add!" onClick={handleUserAdd} />
 	)
@@ -72,7 +72,7 @@ function UserAdd() {
 
 function UserDel() {
 	const [ userName, setUserName ] = useState("")
-	
+
 	const handleUserDel = (e) => {
 		e.preventDefault()
 		deleteUserS(userName).then(e => {console.log(e)})
@@ -81,12 +81,12 @@ function UserDel() {
 	const handleUNameChange = (e) => {
 		setUserName(e.target.value)
 	}
-	
+
 	const inputLines = 
 		{ 
 			"Username": handleUNameChange
 		}
-	
+
 	return ( 
 		<FormStyled title="Delete a User" inputs={inputLines} submitButtonValue="Delete!" onClick={handleUserDel} />
 	)
@@ -95,7 +95,7 @@ function UserDel() {
 function UserAssign() {
 	const [ userName, setUserName ] = useState("")
 	const [ courseID, setCourseID ] = useState("")
-	
+
 	const handleUserAssign = (e) => {
 		e.preventDefault()
 		assignUserToCourse(userName, courseID).then(e => {console.log(e)})
@@ -114,7 +114,7 @@ function UserAssign() {
 			"Username": handleUNameChange,
 			"Course ID": handleCIDChange
 		}
-	
+
 	return ( 
 		<FormStyled title="Assign a User to a Course" inputs={inputLines} submitButtonValue="Assign!" onClick={handleUserAssign} />
 	)

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
 import { loginS } from "../services/db.js"
-import { userTypeS } from "../services/db.js"
 import { userType } from "../services/db.js"
 import { userData } from "../services/db.js"
 
@@ -13,9 +12,9 @@ import FormStyled from '../components/Form.jsx'
 import '../css/login.css'
 
 function Login() {
-	var [ username, setUsername ] = useState("")
-	var [ password, setPassword ] = useState("")
-	var navigate = useNavigate()
+	let [ username, setUsername ] = useState("")
+	let [ password, setPassword ] = useState("")
+	let navigate = useNavigate()
 
 	const handleLogin = (e) => {
 		e.preventDefault()
@@ -24,14 +23,13 @@ function Login() {
 			if(!success) return;
 
 			setCookie("Username", username);
-			setCookie("Type", userType(username));
-			setCookie("Data", userData(username)); 
-
-			// TODO: remove the function call below for prod
-			userTypeS(username).then(data => {
-				console.log(data)
-			})
-			navigate('/home-page')
+			userType(username).then(uType => {
+				setCookie("Type", uType)
+				userData(username).then(data => {
+					setCookie("Data", data); 
+					navigate('/home-page');
+				});
+			});
 		})
 	}
 

@@ -1,9 +1,14 @@
 import "../css/Dashboard.css"
 
+import { useState, useEffect } from "react"
+
 import { courseName } from "../services/db.js"
 import { getUsersOfCourse } from "../services/db.js"
 
 export default function Dashboard({user, type, data}) {
+	const [ isLoading, setLoading ] = useState(true)
+	const [ courses, setCourses ] = useState({})
+
 	const adminDashboard = (uData) => {
 		return (
 			<>
@@ -24,8 +29,9 @@ export default function Dashboard({user, type, data}) {
 			<>
 			<table><thead><tr><th>Course ID</th><th>Course Name</th><th>Students</th></tr></thead><tbody>
 			{uData.map(((courseID, index) => {
-				var cName = courseName(courseID)
-				var courseStudents = Object.keys(getUsersOfCourse("Student", courseID)).length;
+				let cName = courses[courseID]
+				console.log(cName)
+				let courseStudents = Object.keys(getUsersOfCourse("Student", courseID)).length;
 
 				return (
 					<tr><td>{courseID}</td><td>{cName}</td><td>{courseStudents}</td></tr>
@@ -35,21 +41,19 @@ export default function Dashboard({user, type, data}) {
 			</>
 		)
 	}
-	
+
 	const studentDashboard = (uData) => {
 		if(uData.length==0) {
 			return (
 				<h3>You are currently not taking any classes!</h3>
 			)
 		}
-
-		return (
-			<>
+		return ( <>
 			<table><thead><tr><th>Course Name</th><th>Teacher(s)</th><th>Grade</th></tr></thead><tbody>
 			{uData.map(((courseID, index) => {
-				var cName = courseName(courseID)
-				var courseTeachers = getUsersOfCourse("Teacher", courseID)
-				var courseGrade = getUsersOfCourse("Student", courseID)[user]
+				let cName = courses[courseID]
+				let courseTeachers = getUsersOfCourse("Teacher", courseID)
+				let courseGrade = getUsersOfCourse("Student", courseID)[user]
 
 				return (
 					<tr><td>{cName}</td><td>{courseTeachers}</td><td>{courseGrade}</td></tr>
@@ -60,7 +64,28 @@ export default function Dashboard({user, type, data}) {
 		)
 	}
 
-	return (
+	useEffect(() => {
+		async function retrieveCourseNames() {
+			if(type === "Admin") return true;
+
+			let courseJson = {}
+			for(let cID of data) {
+				courseJson[cID] = await courseName(cID)
+			}
+
+			setCourses(courseJson)
+
+			console.log(courseJson)
+			return true
+		}
+
+		retrieveCourseNames()
+
+		return () => { setLoading(false) }
+	}, [])
+
+	if(isLoading) return (<p>Loading...</p>);
+	else return (
 		<div id="Dashboard">
 		{
 			{
