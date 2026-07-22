@@ -7,7 +7,7 @@ import { getUsersOfCourse } from "../services/db.js"
 
 export default function Dashboard({user, type, data}) {
 	const [ isLoading, setLoading ] = useState(true)
-	const [ courses, setCourses ] = useState({})
+	const [ courses, setCourses ] = useState({"": {}})
 
 	const adminDashboard = (uData) => {
 		return (
@@ -29,10 +29,9 @@ export default function Dashboard({user, type, data}) {
 			<>
 			<table><thead><tr><th>Course ID</th><th>Course Name</th><th>Students</th></tr></thead><tbody>
 			{uData.map(((courseID, index) => {
-				let cName = courses[courseID]
-				console.log(cName)
-				let courseStudents = Object.keys(getUsersOfCourse("Student", courseID)).length;
-
+				if(!courses[courseID]) return (<></>)
+				let cName = courses[courseID]["Name"]
+				let courseStudents = courses[courseID]["Students"];
 				return (
 					<tr><td>{courseID}</td><td>{cName}</td><td>{courseStudents}</td></tr>
 				);
@@ -70,7 +69,9 @@ export default function Dashboard({user, type, data}) {
 
 			let courseJson = {}
 			for(let cID of data) {
-				courseJson[cID] = await courseName(cID)
+				courseJson[cID] = {}
+				courseJson[cID]["Name"] = await courseName(cID)
+				courseJson[cID]["Students"] = Object.keys(await getUsersOfCourse("Student", cID)).length
 			}
 
 			setCourses(courseJson)

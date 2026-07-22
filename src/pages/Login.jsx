@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
-import { loginS } from "../services/db.js"
+import { login } from "../services/db.js"
 import { userType } from "../services/db.js"
 import { userData } from "../services/db.js"
 
@@ -19,7 +19,7 @@ function Login() {
 	const handleLogin = (e) => {
 		e.preventDefault()
 		
-		loginS(username, password).then(success => {
+		login(username, password).then(success => {
 			if(!success) return;
 
 			setCookie("Username", username);

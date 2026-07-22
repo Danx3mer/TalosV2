@@ -1,129 +1,118 @@
-import USER_DB from "../databases/user.json";
-import COURSE_DB from "../databases/course.json";
-
 import { supabase } from "./supabase.ts";
 
 async function selectData(relation, col, identifierCol, identifierVal) {
-  const { data, error } = await supabase
-    .from(relation)
-    .select(col)
-    .eq(identifierCol, identifierVal);
-  console.log(data)
-  return data[0][col];
+	const { data, error } = await supabase
+		.from(relation)
+		.select(col)
+		.eq(identifierCol, identifierVal);
+	console.log(data)
+	return data[0][col];
 }
 
 // SUPABASE AUTH
-export async function loginS(username, password) {
-  const { data, e } = await supabase.auth.signInWithPassword({
-    email: `${username.toLowerCase()}@talosv2.com`,
-    password: password,
-  });
+export async function login(username, password) {
+	const { data, e } = await supabase.auth.signInWithPassword({
+		email: `${username.toLowerCase()}@talosv2.com`,
+		password: password,
+	});
 
-  return data["session"] !== null;
+	return data["session"] !== null;
 }
 
 // SUPABASE PROFILES DB
 export async function userType(username) {
-  return selectData("profiles", "type", "username", username);
+	return selectData("profiles", "type", "username", username);
 }
 
 //SUPABASE COURSE DB
 export async function createCourse(cID, cName) {
-  const { error } = await supabase
-    .from("courses")
-    .insert({ id: cID, name: cName });
+	const { error } = await supabase
+		.from("courses")
+		.insert({ id: cID, name: cName });
 
-  return error;
+	return error;
 }
 
 export async function deleteCourse(cID) {
-  const { error } = await supabase.from("courses").delete().eq("id", cID);
+	const { error } = await supabase.from("courses").delete().eq("id", cID);
 
-  return error;
+	return error;
 }
 
 export async function getCourse(cID) {
-  const { data, error } = await supabase.from("courses").select().eq("id", cID);
-return data;
+	const { data, error } = await supabase.from("courses").select().eq("id", cID);
+	return data;
 }
 
 export async function updateStudentGrade(uName, cID, grade) {
-  let oldGrades = await selectData("courses", "students", "id", cID);
-  oldGrades[uName] = grade;
+	let oldGrades = await selectData("courses", "students", "id", cID);
+	oldGrades[uName] = grade;
 
-  const { data, error } = await supabase
-    .from("courses")
-    .update({ students: oldGrades })
-    .eq("id", cID);
+	const { data, error } = await supabase
+		.from("courses")
+		.update({ students: oldGrades })
+		.eq("id", cID);
 
-  return data;
+	return data;
 }
 
 export async function assignUserToCourse(uName, cID) {
-  const uType = await userType(uName);
+	const uType = await userType(uName);
 
-  console.log(uType);
+	console.log(uType);
 
-  if (uType === "Teacher") {
-    let oldData = await selectData("courses", "teachers", "id", cID);
+	if (uType === "Teacher") {
+		let oldData = await selectData("courses", "teachers", "id", cID);
 
-    console.log(oldData);
+		console.log(oldData);
 
-    oldData.push(uName);
+		oldData.push(uName);
 
-    const { data, error } = await supabase
-      .from("courses")
-      .update({ teachers: oldData })
-      .eq("id", cID);
+		const { data, error } = await supabase
+			.from("courses")
+			.update({ teachers: oldData })
+			.eq("id", cID);
 
-    return data;
-  } else {
-    let oldData = await selectData("courses", "students", "id", cID);
+		return data;
+	} else {
+		let oldData = await selectData("courses", "students", "id", cID);
 
-    oldData[uName] = 0;
+		oldData[uName] = 0;
 
-    const { data, error } = await supabase
-      .from("courses")
-      .update({ students: oldData })
-      .eq("id", cID);
+		const { data, error } = await supabase
+			.from("courses")
+			.update({ students: oldData })
+			.eq("id", cID);
 
-    return data;
-  }
+		return data;
+	}
 }
 
 export async function createUserS(username, password, uType) {
-  const { data, error } = await supabase.functions.invoke("create-account", {
-    method: "POST",
-    body: {
-      email: `${username.toLowerCase()}@talosv2.com`,
-      password: password,
-    },
-  });
+	const { data, error } = await supabase.functions.invoke("create-account", {
+		method: "POST",
+		body: {
+			email: `${username.toLowerCase()}@talosv2.com`,
+			password: password,
+		},
+	});
 
-  const { dataProfile, errorProfile } = await supabase
-    .from("profiles")
-    .insert({ type: uType, username: username, uid: data["user"]["id"] });
+	const { dataProfile, errorProfile } = await supabase
+		.from("profiles")
+		.insert({ type: uType, username: username, uid: data["user"]["id"] });
 
-  return dataProfile;
+	return dataProfile;
 }
 
 export async function deleteUserS(username) {
-  const { user, error } = await supabase.functions.invoke("delete-account", {
-    method: "POST",
-    body: {
-      username: username,
-    },
-  });
+	const { user, error } = await supabase.functions.invoke("delete-account", {
+		method: "POST",
+		body: {
+			username: username,
+		},
+	});
 
-  return user;
-}
-
-function userInDB(u) {
-  return u in USER_DB;
-}
-
-export function login(u, p) {
-  return userInDB(u) && USER_DB[u]["Password"] === p;
+	return user;
 }
 
 async function getAmtUsersOfType(t) {
@@ -135,10 +124,10 @@ async function getAmtUsersOfType(t) {
 }
 
 async function getCoursesOf(uName) {
-  const { data, error } = await supabase
-	.from("courses")
-	.select("id")
-	.contains('teachers', [uName])
+	const { data, error } = await supabase
+		.from("courses")
+		.select("id")
+		.contains('teachers', [uName])
 
 	let res = []
 
@@ -150,37 +139,45 @@ async function getCoursesOf(uName) {
 }
 
 export async function userData(uName) {
-  let uType = await userType(uName);
+	let uType = await userType(uName);
 
-  switch (uType) {
-    case "Admin":
-      {
-        let amtTeachers = await getAmtUsersOfType("Teacher");
-        let amtStudents = await getAmtUsersOfType("Student");
-        let amtCourses = await getAmtCourses();
+	switch (uType) {
+		case "Admin":
+			{
+				let amtTeachers = await getAmtUsersOfType("Teacher");
+				let amtStudents = await getAmtUsersOfType("Student");
+				let amtCourses = await getAmtCourses();
 
-        return [amtTeachers, amtStudents, amtCourses];
-      }
-      break;
-    default:
-      return await getCoursesOf(uName);
-  }
+				return [amtTeachers, amtStudents, amtCourses];
+			}
+			break;
+		default:
+			return await getCoursesOf(uName);
+	}
 }
 
 // COURSE DB
 async function getAmtCourses() {
-  const { data, error } = await supabase.from("courses").select();
+	const { data, error } = await supabase.from("courses").select();
 
-  return data.length;
+	return data.length;
 }
 
 export async function courseName(cID) {
 	return await selectData("courses", "name", "id", cID)
 }
 
-export function getUsersOfCourse(uType, cID) {
-  if (!["Teacher", "Student"].includes(uType)) return false;
-  if (!Object.keys(COURSE_DB).includes(cID)) return false;
+export async function getUsersOfCourse(uType, cID) {
+	if (!["Teacher", "Student"].includes(uType)) return false;
 
-  return COURSE_DB[cID][uType];
+	switch(uType) {
+		case "Teacher": {
+			return await selectData("courses", "teachers", "id", cID)
+		}
+			break;
+		case "Student": {
+			return await selectData("courses", "students", "id", cID)
+		}
+			break;
+	}
 }
