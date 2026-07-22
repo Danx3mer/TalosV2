@@ -40,7 +40,7 @@ function CourseAdd() {
 
 	const handleCourseAdd = (e) => {
 		e.preventDefault()
-		createCourse(courseID, courseName).then(e => {console.log(e)})	
+		createCourse(courseID, courseName)
 	}
 
 	const handleCourseIDChange = (e) => {
@@ -67,7 +67,7 @@ function CourseDel() {
 
 	const handleCourseDel = (e) => {
 		e.preventDefault()
-		deleteCourse(courseID).then(e => {console.log(e)})
+		deleteCourse(courseID)
 	}
 
 	const handleCourseIDChange = (e) => {

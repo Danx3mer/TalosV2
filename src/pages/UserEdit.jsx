@@ -43,7 +43,7 @@ function UserAdd() {
 
 	const handleUserAdd = (e) => {
 		e.preventDefault()
-		createUserS(userName, userPassword, userType).then(e => {console.log(e)})
+		createUserS(userName, userPassword, userType)
 	}
 
 	const handleUNameChange = (e) => {
@@ -75,7 +75,7 @@ function UserDel() {
 
 	const handleUserDel = (e) => {
 		e.preventDefault()
-		deleteUserS(userName).then(e => {console.log(e)})
+		deleteUserS(userName)
 	}
 
 	const handleUNameChange = (e) => {
@@ -98,7 +98,7 @@ function UserAssign() {
 
 	const handleUserAssign = (e) => {
 		e.preventDefault()
-		assignUserToCourse(userName, courseID).then(e => {console.log(e)})
+		assignUserToCourse(userName, courseID)
 	}
 
 	const handleCIDChange = (e) => {

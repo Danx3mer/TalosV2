@@ -75,8 +75,6 @@ export default function Dashboard({user, type, data}) {
 			}
 
 			setCourses(courseJson)
-
-			console.log(courseJson)
 			return true
 		}
 

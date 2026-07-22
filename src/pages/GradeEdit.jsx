@@ -46,8 +46,6 @@ export default function CourseEdit() {
 		
 		async function retrieveGrades() {
 			const a = await getUsersOfCourse("Student", cID)
-			console.log(a)
-
 			setGrades(a)
 		}
 
@@ -73,7 +71,6 @@ export default function CourseEdit() {
 		<div>
 		<table><thead><tr><th>Student</th><th>Grade</th></tr></thead><tbody>
 
-		{console.log(grades)}
 		{Object.entries(grades).map((([sName, sGrade]) => {
 			return (
 				<GradeRow key={sName} cID={cID} uName={sName} initialGrade={sGrade} />

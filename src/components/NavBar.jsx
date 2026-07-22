@@ -58,8 +58,6 @@ export default function NavBar({type, data}) {
 			}
 
 			setCourses(courseJson)
-
-			console.log(courseJson)
 			return true
 		}
 

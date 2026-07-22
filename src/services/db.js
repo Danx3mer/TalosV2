@@ -5,7 +5,6 @@ async function selectData(relation, col, identifierCol, identifierVal) {
 		.from(relation)
 		.select(col)
 		.eq(identifierCol, identifierVal);
-	console.log(data)
 	return data[0][col];
 }
 
@@ -59,12 +58,8 @@ export async function updateStudentGrade(uName, cID, grade) {
 export async function assignUserToCourse(uName, cID) {
 	const uType = await userType(uName);
 
-	console.log(uType);
-
 	if (uType === "Teacher") {
 		let oldData = await selectData("courses", "teachers", "id", cID);
-
-		console.log(oldData);
 
 		oldData.push(uName);
 
@@ -117,8 +112,6 @@ export async function deleteUserS(username) {
 
 async function getAmtUsersOfType(t) {
 	const { data, error } = await supabase.from("profiles").select().eq("type", t)
-
-	console.log(data)
 
 	return data.length;
 }
