@@ -31,7 +31,7 @@ export default function Dashboard({user, type, data}) {
 			{uData.map(((courseID, index) => {
 				if(!courses[courseID]) return (<></>)
 				let cName = courses[courseID]["Name"]
-				let courseStudents = courses[courseID]["Students"];
+				let courseStudents = Object.keys(courses[courseID]["Students"]).length;
 				return (
 					<tr><td>{courseID}</td><td>{cName}</td><td>{courseStudents}</td></tr>
 				);
@@ -50,9 +50,11 @@ export default function Dashboard({user, type, data}) {
 		return ( <>
 			<table><thead><tr><th>Course Name</th><th>Teacher(s)</th><th>Grade</th></tr></thead><tbody>
 			{uData.map(((courseID, index) => {
-				let cName = courses[courseID]
-				let courseTeachers = getUsersOfCourse("Teacher", courseID)
-				let courseGrade = getUsersOfCourse("Student", courseID)[user]
+				if(!courses[courseID]) return (<></>)
+				console.log(courses)
+				let cName = courses[courseID]["Name"]
+				let courseTeachers = courses[courseID]["Teachers"]
+				let courseGrade = courses[courseID]["Students"][user]
 
 				return (
 					<tr><td>{cName}</td><td>{courseTeachers}</td><td>{courseGrade}</td></tr>
@@ -71,7 +73,8 @@ export default function Dashboard({user, type, data}) {
 			for(let cID of data) {
 				courseJson[cID] = {}
 				courseJson[cID]["Name"] = await courseName(cID)
-				courseJson[cID]["Students"] = Object.keys(await getUsersOfCourse("Student", cID)).length
+				courseJson[cID]["Teachers"] = await getUsersOfCourse("Teacher", cID)
+				courseJson[cID]["Students"] = await getUsersOfCourse("Student", cID)
 			}
 
 			setCourses(courseJson)
