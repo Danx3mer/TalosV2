@@ -3,10 +3,13 @@ import { useState } from "react"
 import { getCookie } from "../services/manageCookies.js"
 import { parseCookieArray } from "../services/manageCookies.js"
 
-import NavBar from "../components/NavBar.jsx"
-import FormStyled from "../components/Form.jsx"
+import { createCourse } from "../services/db.js"
+import { deleteCourse } from "../services/db.js"
 
 import { getGETParam } from "../services/httpRequests.js"
+
+import NavBar from "../components/NavBar.jsx"
+import FormStyled from "../components/Form.jsx"
 
 import "../css/AdminActions.css"
 
@@ -23,7 +26,7 @@ export default function CourseEdit() {
 		{ uType === "Admin" &&
 			{
 				"add": CourseAdd(),
-					"del": CourseDel()
+				"del": CourseDel()
 			}[editMode] || <h2>Invalid URL. Available editing modes include "add" and "del"</h2>
 		}
 		</main>
@@ -34,16 +37,26 @@ export default function CourseEdit() {
 function CourseAdd() {
 	const [ courseID, setCourseID ] = useState("")
 	const [ courseName, setCourseName ] = useState("")
-	
+
 	const handleCourseAdd = (e) => {
+		e.preventDefault()
+		createCourse(courseID, courseName)
+	}
+
+	const handleCourseIDChange = (e) => {
+		setCourseID(e.target.value)
+	}
+
+	const handleCourseNameChange = (e) => {
+		setCourseName(e.target.value)
 	}
 
 	const inputLines = 
 		{ 
-			"Course ID": setCourseID,
-			"Course Name": setCourseName
+			"Course ID": handleCourseIDChange,
+			"Course Name": handleCourseNameChange
 		}
-	
+
 	return ( 
 		<FormStyled title="Add a Course" inputs={inputLines} submitButtonValue="Add!" onClick={handleCourseAdd} />
 	)
@@ -51,15 +64,21 @@ function CourseAdd() {
 
 function CourseDel() {
 	const [ courseID, setCourseID ] = useState("")
-	
+
 	const handleCourseDel = (e) => {
+		e.preventDefault()
+		deleteCourse(courseID)
+	}
+
+	const handleCourseIDChange = (e) => {
+		setCourseID(e.target.value)
 	}
 
 	const inputLines = 
 		{ 
-			"Course ID": setCourseID,
+			"Course ID": handleCourseIDChange,
 		}
-	
+
 	return ( 
 		<FormStyled title="Delete a Course" inputs={inputLines} submitButtonValue="Delete!" onClick={handleCourseDel} />
 	)

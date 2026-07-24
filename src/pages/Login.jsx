@@ -12,23 +12,26 @@ import FormStyled from '../components/Form.jsx'
 import '../css/login.css'
 
 function Login() {
-	var [ username, setUsername ] = useState("")
-	var [ password, setPassword ] = useState("")
-	var navigate = useNavigate()
+	let [ username, setUsername ] = useState("")
+	let [ password, setPassword ] = useState("")
+	let navigate = useNavigate()
 
 	const handleLogin = (e) => {
 		e.preventDefault()
 		
-		const success = login(username, password)
-		
-		if(success) {
-			setCookie("Username", username);
-			setCookie("Type", userType(username));
-			setCookie("Data", userData(username)); 
+		login(username, password).then(success => {
+			if(!success) return;
 
-			navigate('/home-page')
-		}
-	};
+			setCookie("Username", username);
+			userType(username).then(uType => {
+				setCookie("Type", uType)
+				userData(username).then(data => {
+					setCookie("Data", data); 
+					navigate('/home-page');
+				});
+			});
+		})
+	}
 
 	const handleUsernameChange = (e) => {
 		setUsername(e.target.value)

@@ -3,6 +3,10 @@ import { useState } from "react"
 import { getCookie } from "../services/manageCookies.js"
 import { parseCookieArray } from "../services/manageCookies.js"
 
+import { createUserS } from "../services/db.js"
+import { deleteUserS } from "../services/db.js"
+import { assignUserToCourse } from "../services/db.js"
+
 import NavBar from "../components/NavBar.jsx"
 import FormStyled from "../components/Form.jsx"
 
@@ -23,7 +27,7 @@ export default function CourseEdit() {
 		{ uType === "Admin" &&
 			{
 				"add": UserAdd(),
-					"del": UserDel(),
+				"del": UserDel(),
 				"assign": UserAssign()
 			}[editMode] || <h2>Invalid URL. Available editing modes include "add", "del", and "assign"</h2>
 		}
@@ -36,17 +40,31 @@ function UserAdd() {
 	const [ userName, setUserName ] = useState("")
 	const [ userPassword, setUserPassword ] = useState("")
 	const [ userType, setUserType ] = useState("")
-	
+
 	const handleUserAdd = (e) => {
+		e.preventDefault()
+		createUserS(userName, userPassword, userType)
+	}
+
+	const handleUNameChange = (e) => {
+		setUserName(e.target.value)
+	}
+
+	const handlePasswordChange = (e) => {
+		setUserPassword(e.target.value)
+	}
+
+	const handleUTypeChange = (e) => {
+		setUserType(e.target.value)
 	}
 
 	const inputLines = 
 		{ 
-			"Username": setUserName,
-			"User Password": setUserPassword,
-			"User Type": setUserType
+			"Username": handleUNameChange,
+			"User Password": handlePasswordChange,
+			"User Type": handleUTypeChange
 		}
-	
+
 	return ( 
 		<FormStyled title="Add a User" inputs={inputLines} submitButtonValue="Add!" onClick={handleUserAdd} />
 	)
@@ -54,15 +72,21 @@ function UserAdd() {
 
 function UserDel() {
 	const [ userName, setUserName ] = useState("")
-	
+
 	const handleUserDel = (e) => {
+		e.preventDefault()
+		deleteUserS(userName)
+	}
+
+	const handleUNameChange = (e) => {
+		setUserName(e.target.value)
 	}
 
 	const inputLines = 
 		{ 
-			"Username": setUserName
+			"Username": handleUNameChange
 		}
-	
+
 	return ( 
 		<FormStyled title="Delete a User" inputs={inputLines} submitButtonValue="Delete!" onClick={handleUserDel} />
 	)
@@ -71,16 +95,26 @@ function UserDel() {
 function UserAssign() {
 	const [ userName, setUserName ] = useState("")
 	const [ courseID, setCourseID ] = useState("")
-	
+
 	const handleUserAssign = (e) => {
+		e.preventDefault()
+		assignUserToCourse(userName, courseID)
+	}
+
+	const handleCIDChange = (e) => {
+		setCourseID(e.target.value)
+	}
+
+	const handleUNameChange = (e) => {
+		setUserName(e.target.value)
 	}
 
 	const inputLines = 
 		{ 
-			"Username": setUserName,
-			"Course ID": setCourseID
+			"Username": handleUNameChange,
+			"Course ID": handleCIDChange
 		}
-	
+
 	return ( 
 		<FormStyled title="Assign a User to a Course" inputs={inputLines} submitButtonValue="Assign!" onClick={handleUserAssign} />
 	)
