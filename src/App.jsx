@@ -3,7 +3,6 @@ import Home from './pages/Home.jsx'
 import UserEdit from './pages/UserEdit.jsx'
 import CourseEdit from './pages/CourseEdit.jsx'
 import GradeEdit from './pages/GradeEdit.jsx'
-import SampleSBQ from './pages/samplesupaquery.tsx'
 
 import { Routes, Route } from 'react-router'
 
@@ -15,7 +14,6 @@ export default function App() {
 		<Route path="/courses" element=<CourseEdit/>/>
 		<Route path="/users" element=<UserEdit/>/>
 		<Route path="/course" element=<GradeEdit/>/>
-		<Route path="/ssbq" element=<SampleSBQ/>/>
 		</Routes>
 	);
 }
