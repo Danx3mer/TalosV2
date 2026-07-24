@@ -30,7 +30,6 @@ export default function Dashboard({user, type, data}) {
 			<table><thead><tr><th>Course ID</th><th>Course Name</th><th>Students</th></tr></thead><tbody>
 			{uData.map(((courseID, index) => {
 				if(!Object.keys(courses).includes(courseID)) return (<></>)
-				console.log(courses)
 				let cName = courses[courseID]["Name"]
 				let courseStudents = Object.keys(courses[courseID]["Students"]).length;
 				return (
@@ -52,7 +51,6 @@ export default function Dashboard({user, type, data}) {
 			<table><thead><tr><th>Course Name</th><th>Teacher(s)</th><th>Grade</th></tr></thead><tbody>
 			{uData.map(((courseID, index) => {
 				if(!Object.keys(courses).includes(courseID)) return (<></>)
-				console.log(courses)
 				let cName = courses[courseID]["Name"]
 				let courseTeachers = courses[courseID]["Teachers"]
 				let courseGrade = courses[courseID]["Students"][user]

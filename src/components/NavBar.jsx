@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router'
 import { useState, useEffect } from "react"
 
 import { courseName } from "../services/db.js"
@@ -53,9 +52,7 @@ export default function NavBar({type, data}) {
 			if(type === "Admin") return true;
 
 			let courseJson = {}
-			console.log(data)
 			for(let cID of data) {
-				console.log(cID)
 				courseJson[cID] = await courseName(cID)
 			}
 
