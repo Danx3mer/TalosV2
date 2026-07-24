@@ -117,15 +117,34 @@ async function getAmtUsersOfType(t) {
 }
 
 async function getCoursesOf(uName) {
-	const { data, error } = await supabase
-		.from("courses")
-		.select("id")
-		.contains('teachers', [uName])
+	let uType = await userType(uName);
 
 	let res = []
 
-	for(let course of data) {
-		res.push(course["id"])
+	switch(uType) {
+		case "Teacher":	{
+			const { data, error } = await supabase
+			.from("courses")
+			.select("id")
+			.contains('teachers', [uName])
+
+
+			for(let course of data) {
+				res.push(course["id"])
+			}
+		}
+			break;
+		case "Student": {
+			const { data, error } = await supabase
+			.from("courses")
+			.select("id")
+			.not(`students->>${uName}`, "is", 'null')
+
+			for(let course of data) {
+				res.push(course["id"])
+			}
+		}
+			break;
 	}
 
 	return res

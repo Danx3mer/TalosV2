@@ -53,7 +53,9 @@ export default function NavBar({type, data}) {
 			if(type === "Admin") return true;
 
 			let courseJson = {}
+			console.log(data)
 			for(let cID of data) {
+				console.log(cID)
 				courseJson[cID] = await courseName(cID)
 			}
 
