@@ -45,7 +45,7 @@ Deno.serve(async (req) => {
       )
     }
 
-    const uid = await getUserID(supabaseClient, username)
+    const uid = await getUserID(supabaseClient, username.toLowerCase())
 
     if(uid === "none") {
       return new Response(
