@@ -65,8 +65,13 @@ export default function Dashboard({user, type, data}) {
 	}
 
 	useEffect(() => {
+		let isMounted = true
+
 		async function retrieveCourseNames() {
-			if(type === "Admin") return true;
+			if(type === "Admin") {
+				if(isMounted) setLoading(false)
+				return true;
+			}
 
 			let courseJson = {}
 			for(let cID of data) {
@@ -76,13 +81,18 @@ export default function Dashboard({user, type, data}) {
 				courseJson[cID]["Students"] = await getUsersOfCourse("Student", cID)
 			}
 
-			setCourses(courseJson)
+			if(isMounted) {
+				setCourses(courseJson)
+				setLoading(false)
+			}
 			return true
 		}
 
 		retrieveCourseNames()
 
-		return () => { setLoading(false) }
+		return () => {
+			isMounted = false
+		}
 	}, [])
 
 	if(isLoading) return (<p>Loading...</p>);

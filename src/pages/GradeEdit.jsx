@@ -40,19 +40,21 @@ export default function CourseEdit() {
 	}
 
 	useEffect(() => {
-		async function retrieveCourseName() {
-			setCName(await courseName(cID))
-		}
-		
-		async function retrieveGrades() {
-			const a = await getUsersOfCourse("Student", cID)
-			setGrades(a)
+		let isMounted = true
+
+		async function retrieveData() {
+			const cName = await courseName(cID)
+			const grades = await getUsersOfCourse("Student", cID)
+			if(isMounted) {
+				setCName(cName)
+				setGrades(grades)
+				setLoading(false)
+			}
 		}
 
-		retrieveCourseName()
-		retrieveGrades()
+		retrieveData()
 
-		return () => { setLoading(false) }
+		return () => { isMounted = false }
 	}, [])
 
 	return (

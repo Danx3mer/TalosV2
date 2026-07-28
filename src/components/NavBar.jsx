@@ -48,21 +48,29 @@ export default function NavBar({type, data}) {
 	}
 
 	useEffect(() => {
+		let isMounted = true
+
 		async function retrieveCourseNames() {
-			if(type === "Admin") return true;
+			if(type === "Admin") {
+				if(isMounted) setLoading(false)
+				return true;
+			}
 
 			let courseJson = {}
 			for(let cID of data) {
 				courseJson[cID] = await courseName(cID)
 			}
 
-			setCourses(courseJson)
+			if(isMounted) {
+				setCourses(courseJson)
+				setLoading(false)
+			}
 			return true
 		}
 
 		retrieveCourseNames()
 
-		return () => { setLoading(false) }
+		return () => { isMounted = false }
 	}, [])
 
 	return (
