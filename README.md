@@ -12,5 +12,5 @@ The first version of the project was tailored towards the rubric that my CS teac
 Python CGI is outdated. The final version of this project will look something like this:
 - [x] No CGI, instead using javascript for handling form updates
 - [x] Instead of just using HTML, I will be utilizing React.js for the layout of the website
-- [ ] Instead of regular CSS, I will be utilizing tailwind CSS for the styling of the website
-- [ ] (Next feature!) Instead of 2 JSON files, I will be using SupaBase to save the data
+- [x] Instead of 2 JSON files, I will be using SupaBase to save the data
+- [ ] (Next feature!) Instead of regular CSS, I will be utilizing tailwind CSS for the styling of the website
