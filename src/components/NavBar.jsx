@@ -3,9 +3,6 @@ import { useState, useEffect } from "react"
 import { courseName } from "../services/db.js"
 import { setCookie } from "../services/manageCookies.js"
 
-import "../css/NavBar.css"
-import "../css/Buttons.css"
-
 export default function NavBar({type, data}) {
 	const [ isLoading, setLoading ] = useState(true)
 	const [ courses, setCourses ] = useState({})

@@ -11,8 +11,6 @@ import GradeRow from "../components/GradeRow.jsx"
 
 import { getGETParam } from "../services/httpRequests.js"
 
-import "../css/AdminActions.css"
-
 export default function CourseEdit() {
 	const [ cName, setCName ] = useState("Loading...")
 	const [ grades, setGrades ] = useState({})

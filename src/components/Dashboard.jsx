@@ -1,5 +1,3 @@
-import "../css/Dashboard.css"
-
 import { useState, useEffect } from "react"
 
 import { courseName } from "../services/db.js"

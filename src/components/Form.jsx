@@ -1,12 +1,10 @@
 import { Fragment } from 'react'
 
-import '.././css/form.css'
-
 function FormStyled({title, inputs, submitButtonValue, onClick}) {
 	return (
-		<div className="form">
+		<div className="w-1/3 p-15 rounded-md shadow-2xl">
 		<form onSubmit={onClick} method="POST">
-		<h1 id={`form-${title}-title`} className='formTitle'>{title}</h1>
+		<h1 id={`form-${title}-title`} className='text-lg'>{title}</h1>
 
 		<hr/><br/>
 
@@ -22,7 +20,7 @@ function FormStyled({title, inputs, submitButtonValue, onClick}) {
 
 		<br/><br/>
 
-		<input id={`submit-${title}`} className='formBtn' type='submit' name={`submit-${title}`} value={submitButtonValue}></input>
+		<input id={`submit-${title}`} className='relative ' type='submit' name={`submit-${title}`} value={submitButtonValue}></input>
 		</form>
 		</div>
 	)

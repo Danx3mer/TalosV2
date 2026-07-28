@@ -9,8 +9,6 @@ import { setCookie } from "../services/manageCookies.js"
 
 import FormStyled from '../components/Form.jsx'
 
-import '../css/login.css'
-
 function Login() {
 	let [ username, setUsername ] = useState("")
 	let [ password, setPassword ] = useState("")

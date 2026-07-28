@@ -1,8 +1,6 @@
 import { getCookie } from "../services/manageCookies.js"
 import { parseCookieArray } from "../services/manageCookies.js"
 
-import "../css/home.css"
-
 import NavBar from "../components/NavBar.jsx"
 import Dashboard from "../components/Dashboard.jsx"
 import Header from "../components/Header.jsx"

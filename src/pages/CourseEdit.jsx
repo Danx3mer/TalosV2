@@ -11,8 +11,6 @@ import { getGETParam } from "../services/httpRequests.js"
 import NavBar from "../components/NavBar.jsx"
 import FormStyled from "../components/Form.jsx"
 
-import "../css/AdminActions.css"
-
 export default function CourseEdit() {
 	const uType = getCookie("Type")
 	const uName = getCookie("Username")
